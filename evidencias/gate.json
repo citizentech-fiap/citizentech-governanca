@@ -33,19 +33,19 @@
         "detalhe": "não aplicável: as perguntas não têm atributo de grupo; risco tratado por abstenção"
       },
       {
-        "criterio": "Model Card completo, com explicabilidade",
+        "criterio": "Model Card com as oito seções, incluindo explicabilidade",
         "papel": "Model Validator",
         "estado": "ok",
         "detalhe": "artefatos/model_cards/assistente_rag.md"
       },
       {
-        "criterio": "Plano de monitoramento com limiares e responsáveis",
+        "criterio": "Plano de monitoramento com seção do contrato do módulo",
         "papel": "Metric Owner",
         "estado": "ok",
         "detalhe": "artefatos/plano_monitoramento.md"
       },
       {
-        "criterio": "Revisão LGPD: inventário de dados e RIPD",
+        "criterio": "Revisão LGPD: dados do módulo no inventário e RIPD",
         "papel": "Encarregado de dados",
         "estado": "ok",
         "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"
@@ -84,22 +84,22 @@
         "criterio": "Equidade: diferença entre subgrupos dentro de 5 p.p.",
         "papel": "Model Validator",
         "estado": "exceção EX-02",
-        "detalhe": "uf: 50,0 p.p.; servico_real: 66,7 p.p. (exceção até 2027-03-01, responsável: Jonas Alaf (Metric Owner do MC-02))"
+        "detalhe": "decisão por uf: amostra insuficiente; decisão por servico_real: amostra insuficiente; erro grave em todos os grupos: 0 (exceção até 2027-03-01, responsável: Jonas Alaf (Metric Owner do MC-02))"
       },
       {
-        "criterio": "Model Card completo, com explicabilidade",
+        "criterio": "Model Card com as oito seções, incluindo explicabilidade",
         "papel": "Model Validator",
         "estado": "ok",
         "detalhe": "artefatos/model_cards/classificador_triagem.md"
       },
       {
-        "criterio": "Plano de monitoramento com limiares e responsáveis",
+        "criterio": "Plano de monitoramento com seção do contrato do módulo",
         "papel": "Metric Owner",
         "estado": "ok",
         "detalhe": "artefatos/plano_monitoramento.md"
       },
       {
-        "criterio": "Revisão LGPD: inventário de dados e RIPD",
+        "criterio": "Revisão LGPD: dados do módulo no inventário e RIPD",
         "papel": "Encarregado de dados",
         "estado": "ok",
         "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"
@@ -138,22 +138,22 @@
         "criterio": "Equidade: diferença entre subgrupos dentro de 5 p.p.",
         "papel": "Model Validator",
         "estado": "exceção EX-01",
-        "detalhe": "milho: 14,3 p.p.; feijao: 22,0 p.p. (exceção até 2027-03-01, responsável: Ricardo de Paiva Melo (Metric Owner do MC-03))"
+        "detalhe": "sensibilidade milho: 29,2 p.p.; sensibilidade feijao: 24,6 p.p. (exceção até 2027-03-01, responsável: Ricardo de Paiva Melo (Metric Owner do MC-03))"
       },
       {
-        "criterio": "Model Card completo, com explicabilidade",
+        "criterio": "Model Card com as oito seções, incluindo explicabilidade",
         "papel": "Model Validator",
         "estado": "ok",
         "detalhe": "artefatos/model_cards/modelo_hidrico.md"
       },
       {
-        "criterio": "Plano de monitoramento com limiares e responsáveis",
+        "criterio": "Plano de monitoramento com seção do contrato do módulo",
         "papel": "Metric Owner",
         "estado": "ok",
         "detalhe": "artefatos/plano_monitoramento.md"
       },
       {
-        "criterio": "Revisão LGPD: inventário de dados e RIPD",
+        "criterio": "Revisão LGPD: dados do módulo no inventário e RIPD",
         "papel": "Encarregado de dados",
         "estado": "ok",
         "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"

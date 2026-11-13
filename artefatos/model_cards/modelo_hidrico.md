@@ -44,11 +44,22 @@ acerto balanceado subiu nas duas culturas (milho de 55,8% para 63,7%; feijão de
 painel passou a deixar de sinalizar cerca de metade das perdas reais. Ver
 [`evidencias/rfc03_ponte_series.md`](../../evidencias/rfc03_ponte_series.md) e o RFC-03.
 
-Por UF, o acerto no milho vai de 46,4% (RN) a 75,0% (PI); entre as UFs com pelo menos 30 pares, de 55,4%
-(BA) a 69,6% (CE). A diferença passa do limite de 5 p.p. e está registrada como exceção EX-01.
+Por UF, a sensibilidade no milho vai de 33,3% (RN) a 62,5% (PI) entre as UFs com pelo menos 20 pares. A
+diferença passa do limite de 5 p.p. de igualdade de oportunidade e está registrada como exceção EX-01. Ver
+[`evidencias/subgrupos.md`](../../evidencias/subgrupos.md).
 
-Por safra, o acerto é alto nos anos extremos (2012: 95,7%; 2020: 91,3%) e baixo em anos de chuva
-intermediária (2016: 13,0%; 2021: 17,4%). Ver [`evidencias/drift.md`](../../evidencias/drift.md).
+Por safra, há dois tipos de erro ([`evidencias/drift.md`](../../evidencias/drift.md)):
+
+- **Perda real não sinalizada.** Em 2016, 91,3% dos pares tiveram perda real de 40% ou mais e o painel
+  sinalizou 4,3%: a chuva de 30 dias ficou, em mediana, em 52% da normal, e a perda foi maior do que a
+  chuva explica.
+- **Falso alarme.** Em 2021, a chuva de 30 dias ficou, em mediana, em 43% da normal e o painel sinalizou
+  91,3% dos pares, mas só
+  17,4% tiveram perda real. A referência do IBGE é a média dos 10 anos anteriores, rebaixada pelas secas de
+  2012 a 2017; contra essa média, a produção de 2021 não caiu tanto.
+
+O acerto alto em 2012 (95,7%) e 2020 (91,3%) vem da prevalência: em 2012 quase todos tiveram perda e o
+painel marcou todos; em 2020 quase nenhum teve perda e o painel não marcou nenhum.
 
 ## Considerações éticas
 
@@ -61,7 +72,9 @@ intermediária (2016: 13,0%; 2021: 17,4%). Ver [`evidencias/drift.md`](../../evi
 ## Limitações
 
 - Só chuva e demanda hídrica: praga, preço, área não plantada e distribuição da chuva dentro da safra ficam
-  de fora. É provável que isso explique os anos 2016 a 2019 e 2021, em que o modelo não vê a perda.
+  de fora. É provável que isso explique as perdas não sinalizadas de 2016 a 2019.
+- A verdade de referência também tem limite: a média de 10 anos do IBGE muda depois de uma sequência de
+  secas, o que gera falsos alarmes aparentes, como em 2021.
 - A calibração e a avaliação usam as mesmas safras (2012 a 2025). Não há conjunto de validação separado.
 - Sensibilidade abaixo da meta: a ausência de alerta não prova que não houve perda. O painel não deve ser
   usado para fechar a inscrição de nenhum município.

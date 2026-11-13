@@ -32,8 +32,9 @@ acompanha e o que fazer. Os responsáveis seguem o [RACI](raci.md).
 | Estimativa fora de 0 a 100 | nenhuma | a cada versão | Luís | bloquear a versão |
 | Acerto do critério de 40% contra o IBGE | milho ≥ 60%; feijão ≥ 55% | anual, quando sai a PAM | Ricardo (Metric Owner) | abaixo: revisar calibração e avisar o gestor no painel |
 | Perdas reais sinalizadas (sensibilidade) | ≥ 60% nas duas culturas | anual, quando sai a PAM | Ricardo (Metric Owner) | abaixo (situação atual): orientar o gestor a não usar a falta de alerta como prova de ausência de perda |
-| PSI da chuva de 30 dias contra o histórico | < 0,10 estável; 0,10 a 0,20 investigar; > 0,20 mudança relevante | mensal durante a safra | Jonas (validação) | acima de 0,20: conferir o placar de safras parecidas antes de confiar na sugestão |
-| Acerto por UF | diferença ≤ 5 p.p. com n ≥ 30 | anual | Jonas (validação) | acima: manter exceção EX-01 e o aviso no material de uso |
+| PSI da chuva de 30 dias contra as demais safras | contexto, sem limite de alarme | mensal durante a safra | Jonas (validação) | mostrar ao gestor o placar das safras com chuva parecida; os limites 0,10 e 0,20 dispararam em 8 de 15 safras, porque a chuva do semiárido muda muito de um ano para outro |
+| Sensibilidade por UF (igualdade de oportunidade) | diferença ≤ 5 p.p. entre UFs com 20 pares ou mais | anual | Jonas (validação) | acima: manter exceção EX-01 e o aviso no material de uso |
+| Tipo de erro por safra | registrar perda não sinalizada e falso alarme | anual | Ricardo (Metric Owner) | perda não sinalizada pesa mais, porque o agricultor deixa de ser priorizado |
 | Decisões sem identificação do gestor | 0 | contínuo (bloqueado na tela e no pipeline) | Luís | qualquer caso: incidente |
 | Atualização dos dados de clima | até 7 dias durante a safra | semanal | Luís | acima: o painel mostra a data do último dado |
 
@@ -42,8 +43,9 @@ acompanha e o que fazer. Os responsáveis seguem o [RACI](raci.md).
 | Situação | Exemplo no CitizenTech | Resposta |
 |---|---|---|
 | Mudança na entrada, desempenho estável | PSI entre 0,10 e 0,20 numa safra comum | monitorar e conferir no próximo placar |
-| Mudança forte na entrada | safra como 2012 ou 2020 (PSI acima de 1) | conferir o placar de safras parecidas; o histórico mostra acerto alto nesses anos |
-| Mudança na relação entre entrada e resultado | safras como 2016 e 2021, em que a perda veio de outras causas | avisar o gestor; não usar a estimativa como única fonte |
+| Mudança forte na entrada | safra como 2012 ou 2020 (PSI acima de 1) | conferir o placar de safras parecidas; nesses anos o acerto alto vem de quase todos ou quase nenhum terem perda |
+| Perda maior do que a chuva explica | 2016: perda real em 91% dos pares, painel sinalizou 4% | avisar o gestor; não usar a estimativa como única fonte; revisar com vistoria |
+| Referência do IBGE deslocada | 2021: painel sinalizou 91% e só 17% tiveram perda contra a média dos 10 anos anteriores | registrar como limite da verdade de referência, não como erro do modelo |
 | Queda localizada | acerto baixo numa UF | exceção registrada, aviso no material de uso e recalibração por UF |
 | Mudança no conteúdo oficial | Carta de Serviço alterada no gov.br | hash da carta muda, nova avaliação do assistente antes de usar o corpus novo |
 

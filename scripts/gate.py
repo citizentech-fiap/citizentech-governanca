@@ -24,7 +24,8 @@ import subgrupos
 MODEL_CARDS = {"genai": "assistente_rag.md", "rpa": "classificador_triagem.md", "dashboard": "modelo_hidrico.md"}
 SECOES_CARD = ["Detalhes", "Uso pretendido", "Dados", "Métricas", "Considerações éticas", "Limitações",
                "Monitoramento", "Explicabilidade"]
-DOCUMENTOS_LGPD = ["lgpd/inventario_dados.md", "lgpd/ripd_simplificado.md"]
+MC = {"genai": "MC-01", "rpa": "MC-02", "dashboard": "MC-03"}
+ROTULO = {"genai": "| GenAI", "rpa": "| RPA", "dashboard": "| Dashboard"}
 
 CRITERIOS = [
     ("rastreabilidade", "Rastreabilidade: código no commit registrado, sem alteração local", "Engenharia"),
@@ -32,9 +33,9 @@ CRITERIOS = [
     ("referencia", "Conjuntos de referência sem alteração (hash SHA-256)", "Data Steward"),
     ("desempenho", "Desempenho: Metric Contract sem alerta crítico", "Metric Owner"),
     ("equidade", "Equidade: diferença entre subgrupos dentro de 5 p.p.", "Model Validator"),
-    ("documentacao", "Model Card completo, com explicabilidade", "Model Validator"),
-    ("monitoramento", "Plano de monitoramento com limiares e responsáveis", "Metric Owner"),
-    ("lgpd", "Revisão LGPD: inventário de dados e RIPD", "Encarregado de dados"),
+    ("documentacao", "Model Card com as oito seções, incluindo explicabilidade", "Model Validator"),
+    ("monitoramento", "Plano de monitoramento com seção do contrato do módulo", "Metric Owner"),
+    ("lgpd", "Revisão LGPD: dados do módulo no inventário e RIPD", "Encarregado de dados"),
 ]
 
 
@@ -87,11 +88,24 @@ def equidade(modulo, res_subgrupos):
     if modulo == "genai":
         return None, "não aplicável: as perguntas não têm atributo de grupo; risco tratado por abstenção"
     if modulo == "dashboard":
-        difs = {c: r["diferenca_pp"] for c, r in res_subgrupos["painel"].items()}
+        difs = {f"sensibilidade {c}": r["diferenca_pp"] for c, r in res_subgrupos["painel"].items()}
+        extra = ""
     else:
-        difs = {g: r["diferenca_pp"] for g, r in res_subgrupos["robo"].items()}
-    texto = "; ".join(f"{k}: {comum.num(v, 1)} p.p." for k, v in difs.items())
-    return all(v <= subgrupos.LIMITE_PP for v in difs.values()), texto
+        difs = {f"decisão por {g}": r["diferenca_pp"] for g, r in res_subgrupos["robo"].items()}
+        graves = res_subgrupos["robo"]["uf"]["erro_grave_total"]
+        extra = f"; erro grave em todos os grupos: {graves}"
+    texto = "; ".join(f"{k}: " + (f"{comum.num(v, 1)} p.p." if v is not None else "amostra insuficiente")
+                      for k, v in difs.items()) + extra
+    ok = all(v is not None and v <= subgrupos.LIMITE_PP for v in difs.values())
+    return ok, texto
+
+
+def cobre_modulo(caminho, termos):
+    if not caminho.exists():
+        return False, f"{_nome(caminho)} ausente"
+    texto = caminho.read_text(encoding="utf-8")
+    faltando = [t for t in termos if t not in texto]
+    return (not faltando, _nome(caminho) if not faltando else f"{_nome(caminho)} não cobre: " + ", ".join(faltando))
 
 
 def _nome(caminho):
@@ -137,9 +151,10 @@ def avaliar(rodar_testes=True):
             "desempenho": desempenho(modulo, contratos),
             "equidade": equidade(modulo, res_sub),
             "documentacao": documento(comum.ARTEFATOS / "model_cards" / MODEL_CARDS[modulo], SECOES_CARD),
-            "monitoramento": documento(comum.ARTEFATOS / "plano_monitoramento.md"),
+            "monitoramento": cobre_modulo(comum.ARTEFATOS / "plano_monitoramento.md", [f"({MC[modulo]})"]),
             "lgpd": (lambda r: (all(x[0] for x in r), "; ".join(x[1] for x in r)))(
-                [documento(comum.ARTEFATOS / d) for d in DOCUMENTOS_LGPD]),
+                [cobre_modulo(comum.ARTEFATOS / "lgpd/inventario_dados.md", [ROTULO[modulo]]),
+                 documento(comum.ARTEFATOS / "lgpd/ripd_simplificado.md")]),
         }
         linhas, situacao = [], "aprovado"
         for chave, nome, papel in CRITERIOS:

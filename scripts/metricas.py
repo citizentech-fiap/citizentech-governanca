@@ -48,26 +48,34 @@ def genai(pasta):
     }
 
 
-def rpa(pasta):
+def pedidos_rpa(pasta):
+    """Resultado do robô por pedido, com as mesmas regras de eval/avaliar_robo.py."""
     res = pd.read_csv(pasta / "eval/resultados_robo.csv")
     labels = pd.read_csv(pasta / "data/synthetic/labels.csv")
-    # Mesma regra de eval/avaliar_robo.py: em pedido ambíguo, os dois serviços plausíveis valem.
+    # Em pedido ambíguo, os dois serviços plausíveis valem como classificação correta.
     alt = labels.set_index("request_id")["observacao"].astype(str).str.extract(r"alternativa=(\w+)")[0]
     aceitos = res.apply(lambda r: {r.servico_real} | ({alt[r.request_id]} if isinstance(alt.get(r.request_id), str)
                                                       else set()), axis=1)
-    servico_ok = pd.Series([p in a for p, a in zip(res.servico_previsto, aceitos)], index=res.index)
-    cls = res.categoria.isin(["tipico", "docs_faltando", "ilegivel", "ambiguo"])
-    resolvidos = res.decisao.eq("resolvido")
-    graves = resolvidos & (~servico_ok | res.categoria.eq("fora_escopo"))
-    seguros = res.decisao.eq("revisao_humana") & res.decisao_esperada.eq("resolvido")
+    res["servico_ok"] = [p in a for p, a in zip(res.servico_previsto, aceitos)]
+    res["classificavel"] = res.categoria.isin(["tipico", "docs_faltando", "ilegivel", "ambiguo"])
+    res["resolvido"] = res.decisao.eq("resolvido")
+    res["grave"] = res.resolvido & (~res.servico_ok | res.categoria.eq("fora_escopo"))
+    res["seguro"] = res.decisao.eq("revisao_humana") & res.decisao_esperada.eq("resolvido")
+    res["acerto"] = res.decisao_ok.map(_sim)
+    res["revisao"] = res.decisao.eq("revisao_humana")
+    return res.merge(labels[["request_id", "uf"]], on="request_id", how="left", validate="one_to_one")
+
+
+def rpa(pasta):
+    res = pedidos_rpa(pasta)
     return {
-        "decisao_correta": res.decisao_ok.map(_sim).mean(),
-        "erro_grave": int(graves.sum()),
-        "acuracia_classificacao": servico_ok[cls].mean(),
-        "taxa_revisao_humana": res.decisao.eq("revisao_humana").mean(),
-        "revisao_desnecessaria": int(seguros.sum()),
-        "_detalhe": {"pedidos": len(res), "respostas_automaticas": int(resolvidos.sum()),
-                     "classificados": int(cls.sum())},
+        "decisao_correta": res.acerto.mean(),
+        "erro_grave": int(res.grave.sum()),
+        "acuracia_classificacao": res.servico_ok[res.classificavel].mean(),
+        "taxa_revisao_humana": res.revisao.mean(),
+        "revisao_desnecessaria": int(res.seguro.sum()),
+        "_detalhe": {"pedidos": len(res), "respostas_automaticas": int(res.resolvido.sum()),
+                     "classificados": int(res.classificavel.sum())},
     }
 
 
@@ -167,6 +175,7 @@ def relatorio(resultado, dados_versoes=None):
 def main():
     try:
         dados_versoes = comum.versoes()
+        comum.verificar_versoes(dados_versoes)
         resultado = calcular(dados_versoes)
     except (FileNotFoundError, RuntimeError, KeyError) as erro:
         print(f"Não foi possível calcular os contratos: {erro}")

@@ -19,6 +19,7 @@ seca. Dados tratados e finalidades: ver o [inventário](inventario_dados.md).
 | Risco ao titular | Probabilidade | Impacto | Medida existente | Medida pendente |
 |---|---|---|---|---|
 | CPF ou telefone enviado a serviço externo de IA | baixa | alto | máscara antes do assistente; teste de segurança com 0 vazamentos com proteção ligada | máscara de nomes próprios |
+| Transferência internacional do texto da pergunta (art. 33) | alta | médio | só texto mascarado sai do país | contrato com cláusulas de proteção ou modelo hospedado no Brasil |
 | Pedido lido por pessoa não autorizada | média | alto | arquivos fora do git; planilha sem nome e CPF | controle de acesso e autenticação |
 | Decisão automática prejudicial ao titular | baixa | alto | robô não nega benefício; dúvida vai para pessoa; erro grave 0 | auditoria periódica de amostra da fila |
 | Dado mantido por mais tempo que o necessário | alta | médio | nenhuma automática | rotina de expurgo pelos prazos do inventário |
@@ -30,8 +31,9 @@ seca. Dados tratados e finalidades: ver o [inventário](inventario_dados.md).
 1. Quem detectar avisa a engenharia e o encarregado no mesmo dia.
 2. A engenharia contém o incidente (revoga acesso, retira arquivo exposto, troca chave) e registra o que
    aconteceu no histórico do repositório.
-3. O encarregado avalia se há risco ou dano relevante. Havendo, comunica a ANPD e os titulares em prazo
-   razoável, com a natureza dos dados, os titulares afetados, as medidas tomadas e os riscos.
+3. O encarregado avalia se há risco ou dano relevante. Havendo, comunica a ANPD e os titulares em até 3 dias
+   úteis (Resolução CD/ANPD nº 15/2024), com a natureza dos dados, os titulares afetados, as medidas tomadas e
+   os riscos.
 4. Postmortem sem busca de culpados, focado no processo, com ação e prazo.
 
 ## Conclusão do encarregado

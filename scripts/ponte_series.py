@@ -71,6 +71,7 @@ def relatorio(dados, dados_versoes=None):
 def main():
     try:
         dados_versoes = comum.versoes()
+        comum.verificar_versoes(dados_versoes)
         dados = comum.python_no_modulo(comum.pasta("dashboard", dados_versoes), CODIGO)
     except (FileNotFoundError, RuntimeError, KeyError) as erro:
         print(f"Não foi possível calcular a ponte entre séries: {erro}")

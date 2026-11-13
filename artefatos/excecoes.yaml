@@ -6,16 +6,17 @@ excecoes:
     modulo: dashboard
     criterio: equidade
     situacao: >
-      O acerto do critério de 40% varia entre UFs: no milho, de 55,4% (BA) a 69,6% (CE) entre as UFs
-      com pelo menos 30 pares; RN fica em 46,4% com 28 pares. A diferença passa do limite de 5 p.p.
+      A igualdade de oportunidade entre UFs não é atendida. A sensibilidade (perdas reais de 40% ou mais
+      que o painel sinaliza) vai, no milho, de 33,3% no RN a 62,5% no PI, e no feijão, de 33,3% no RN a
+      57,9% na PB, entre as UFs com pelo menos 20 pares. A diferença passa do limite de 5 p.p.
     motivo: >
       O modelo usa só chuva e demanda hídrica. Perdas por praga, preço ou área não plantada não entram,
-      e o peso dessas causas muda de um estado para outro. Com 14 a 70 pares por UF, parte da diferença
+      e o peso dessas causas muda de um estado para outro. Com 28 a 70 pares por UF, parte da diferença
       é ruído de amostra.
     mitigacao: >
       O painel não concede nem nega benefício: só sugere onde pedir vistoria, e a decisão é do gestor,
       registrada com identificação. O placar por UF fica visível no material de uso, e o gestor é
-      orientado a não usar a estimativa como única fonte nas UFs com acerto abaixo de 55%.
+      orientado a não usar a estimativa como única fonte, principalmente no RN e na BA.
     acao: Calibrar Ky por UF com validação separada por safra e medir de novo.
     responsavel: Ricardo de Paiva Melo (Metric Owner do MC-03)
     prazo: 2027-03-01
@@ -24,14 +25,15 @@ excecoes:
     modulo: rpa
     criterio: equidade
     situacao: >
-      A decisão correta varia entre UFs (de 50% a 100%) e entre serviços (de 33,3% a 100%), mas todos
-      os subgrupos têm menos de 30 pedidos.
+      A equidade não pode ser medida: só Pernambuco tem mais de 20 pedidos (32); as outras UFs têm de 1
+      a 8, e cada serviço tem de 3 a 8. A decisão correta varia de 50% a 100% entre UFs e de 33,3% a 100%
+      entre serviços.
     motivo: >
       O conjunto de teste é sintético e pequeno (60 pedidos). A diferença não pode ser separada do
       ruído de amostra.
     mitigacao: >
       Erro grave igual a zero: nenhum pedido recebe resposta automática sobre o serviço errado. Toda
       dúvida vai para a fila de revisão humana, fechada com nome do responsável e desfecho.
-    acao: Ampliar o conjunto rotulado para pelo menos 30 pedidos por UF antes de uso real.
+    acao: Ampliar o conjunto rotulado para pelo menos 20 pedidos por UF e por serviço antes de uso real.
     responsavel: Jonas Alaf (Metric Owner do MC-02)
     prazo: 2027-03-01

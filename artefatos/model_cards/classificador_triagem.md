@@ -40,9 +40,10 @@
 | Pedidos ambíguos enviados para revisão humana | 5 de 6 (antes: 0 de 6) | 6 |
 | Revisões desnecessárias (erro seguro) | 9 | 60 |
 
-Por subgrupo, a decisão correta vai de 50% a 100% entre UFs e de 33,3% a 100% entre serviços, todos com
-menos de 30 pedidos ([`evidencias/subgrupos.md`](../../evidencias/subgrupos.md)). A diferença não pode ser
-separada do ruído de amostra e está registrada como exceção EX-02.
+Por subgrupo, a decisão correta vai de 50% a 100% entre UFs e de 33,3% a 100% entre serviços. Só
+Pernambuco tem mais de 20 pedidos (32), então a diferença não pode ser separada do ruído de amostra e está
+registrada como exceção EX-02. O erro grave é zero em todas as UFs e em todos os serviços
+([`evidencias/subgrupos.md`](../../evidencias/subgrupos.md)).
 
 ## Considerações éticas
 

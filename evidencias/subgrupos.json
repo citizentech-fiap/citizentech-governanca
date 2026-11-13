@@ -5,46 +5,72 @@
         {
           "uf": "AL",
           "acuracia": 0.6428571428571429,
-          "n": 28
+          "n": 28,
+          "com_perda": 19,
+          "sensibilidade": 0.5789473684210527
         },
         {
           "uf": "BA",
           "acuracia": 0.5535714285714286,
-          "n": 56
+          "n": 56,
+          "com_perda": 23,
+          "sensibilidade": 0.43478260869565216
         },
         {
           "uf": "CE",
           "acuracia": 0.6964285714285714,
-          "n": 56
+          "n": 56,
+          "com_perda": 23,
+          "sensibilidade": 0.5217391304347826
         },
         {
           "uf": "PB",
           "acuracia": 0.6904761904761905,
-          "n": 42
+          "n": 42,
+          "com_perda": 17,
+          "sensibilidade": 0.5882352941176471
         },
         {
           "uf": "PE",
           "acuracia": 0.6,
-          "n": 70
+          "n": 70,
+          "com_perda": 51,
+          "sensibilidade": 0.5294117647058824
         },
         {
           "uf": "PI",
           "acuracia": 0.75,
-          "n": 28
+          "n": 28,
+          "com_perda": 16,
+          "sensibilidade": 0.625
         },
         {
           "uf": "RN",
           "acuracia": 0.4642857142857143,
-          "n": 28
+          "n": 28,
+          "com_perda": 18,
+          "sensibilidade": 0.3333333333333333
         },
         {
           "uf": "SE",
           "acuracia": 0.7142857142857143,
-          "n": 14
+          "n": 14,
+          "com_perda": 3,
+          "sensibilidade": 0.3333333333333333
         }
       ],
-      "diferenca_pp": 14.28571428571428,
-      "so_amostras_grandes": true,
+      "diferenca_pp": 29.166666666666668,
+      "diferenca_acerto_pp": 28.57142857142857,
+      "ufs_comparadas": [
+        "AL",
+        "BA",
+        "CE",
+        "PB",
+        "PE",
+        "PI",
+        "RN"
+      ],
+      "sensibilidade_geral": 0.5117647058823529,
       "geral": 0.6304347826086957
     },
     "feijao": {
@@ -52,46 +78,72 @@
         {
           "uf": "AL",
           "acuracia": 0.5357142857142857,
-          "n": 28
+          "n": 28,
+          "com_perda": 19,
+          "sensibilidade": 0.47368421052631576
         },
         {
           "uf": "BA",
           "acuracia": 0.5178571428571429,
-          "n": 56
+          "n": 56,
+          "com_perda": 37,
+          "sensibilidade": 0.40540540540540543
         },
         {
           "uf": "CE",
           "acuracia": 0.6071428571428571,
-          "n": 56
+          "n": 56,
+          "com_perda": 28,
+          "sensibilidade": 0.35714285714285715
         },
         {
           "uf": "PB",
           "acuracia": 0.7380952380952381,
-          "n": 42
+          "n": 42,
+          "com_perda": 19,
+          "sensibilidade": 0.5789473684210527
         },
         {
           "uf": "PE",
           "acuracia": 0.5714285714285714,
-          "n": 70
+          "n": 70,
+          "com_perda": 51,
+          "sensibilidade": 0.49019607843137253
         },
         {
           "uf": "PI",
           "acuracia": 0.6071428571428571,
-          "n": 28
+          "n": 28,
+          "com_perda": 14,
+          "sensibilidade": 0.5
         },
         {
           "uf": "RN",
           "acuracia": 0.5,
-          "n": 28
+          "n": 28,
+          "com_perda": 18,
+          "sensibilidade": 0.3333333333333333
         },
         {
           "uf": "SE",
           "acuracia": 0.42857142857142855,
-          "n": 14
+          "n": 14,
+          "com_perda": 11,
+          "sensibilidade": 0.2727272727272727
         }
       ],
-      "diferenca_pp": 22.023809523809522,
-      "so_amostras_grandes": true,
+      "diferenca_pp": 24.561403508771935,
+      "diferenca_acerto_pp": 23.809523809523814,
+      "ufs_comparadas": [
+        "AL",
+        "BA",
+        "CE",
+        "PB",
+        "PE",
+        "PI",
+        "RN"
+      ],
+      "sensibilidade_geral": 0.4365482233502538,
       "geral": 0.577639751552795
     }
   },
@@ -102,47 +154,57 @@
           "grupo": "AL",
           "n": 8,
           "decisao_correta": 0.5,
-          "revisao_humana": 0.75
+          "revisao_humana": 0.75,
+          "erro_grave": 0
         },
         {
           "grupo": "BA",
           "n": 4,
           "decisao_correta": 1.0,
-          "revisao_humana": 0.5
+          "revisao_humana": 0.5,
+          "erro_grave": 0
         },
         {
           "grupo": "CE",
           "n": 6,
           "decisao_correta": 0.8333333333333334,
-          "revisao_humana": 0.16666666666666666
+          "revisao_humana": 0.16666666666666666,
+          "erro_grave": 0
         },
         {
           "grupo": "PB",
           "n": 6,
           "decisao_correta": 1.0,
-          "revisao_humana": 0.5
+          "revisao_humana": 0.5,
+          "erro_grave": 0
         },
         {
           "grupo": "PE",
           "n": 32,
           "decisao_correta": 0.84375,
-          "revisao_humana": 0.375
+          "revisao_humana": 0.375,
+          "erro_grave": 0
         },
         {
           "grupo": "PI",
           "n": 3,
           "decisao_correta": 1.0,
-          "revisao_humana": 0.3333333333333333
+          "revisao_humana": 0.3333333333333333,
+          "erro_grave": 0
         },
         {
           "grupo": "SE",
           "n": 1,
           "decisao_correta": 1.0,
-          "revisao_humana": 0.0
+          "revisao_humana": 0.0,
+          "erro_grave": 0
         }
       ],
-      "diferenca_pp": 50.0,
-      "so_amostras_grandes": false
+      "diferenca_pp": null,
+      "grupos_comparados": [
+        "PE"
+      ],
+      "erro_grave_total": 0
     },
     "servico_real": {
       "tabela": [
@@ -150,65 +212,76 @@
           "grupo": "aposentadoria_rural",
           "n": 7,
           "decisao_correta": 0.8571428571428571,
-          "revisao_humana": 0.42857142857142855
+          "revisao_humana": 0.42857142857142855,
+          "erro_grave": 0
         },
         {
           "grupo": "bolsa_familia",
           "n": 5,
           "decisao_correta": 1.0,
-          "revisao_humana": 0.2
+          "revisao_humana": 0.2,
+          "erro_grave": 0
         },
         {
           "grupo": "bpc",
           "n": 3,
           "decisao_correta": 1.0,
-          "revisao_humana": 0.0
+          "revisao_humana": 0.0,
+          "erro_grave": 0
         },
         {
           "grupo": "cadunico",
           "n": 6,
           "decisao_correta": 0.8333333333333334,
-          "revisao_humana": 0.3333333333333333
+          "revisao_humana": 0.3333333333333333,
+          "erro_grave": 0
         },
         {
           "grupo": "caf",
           "n": 8,
           "decisao_correta": 0.875,
-          "revisao_humana": 0.375
+          "revisao_humana": 0.375,
+          "erro_grave": 0
         },
         {
           "grupo": "cpf",
           "n": 3,
           "decisao_correta": 0.3333333333333333,
-          "revisao_humana": 0.6666666666666666
+          "revisao_humana": 0.6666666666666666,
+          "erro_grave": 0
         },
         {
           "grupo": "fora_escopo",
           "n": 6,
           "decisao_correta": 1.0,
-          "revisao_humana": 1.0
+          "revisao_humana": 1.0,
+          "erro_grave": 0
         },
         {
           "grupo": "garantia_safra",
           "n": 8,
           "decisao_correta": 0.875,
-          "revisao_humana": 0.375
+          "revisao_humana": 0.375,
+          "erro_grave": 0
         },
         {
           "grupo": "pronaf",
           "n": 8,
           "decisao_correta": 0.75,
-          "revisao_humana": 0.25
+          "revisao_humana": 0.25,
+          "erro_grave": 0
         },
         {
           "grupo": "salario_maternidade_rural",
           "n": 6,
           "decisao_correta": 0.6666666666666666,
-          "revisao_humana": 0.5
+          "revisao_humana": 0.5,
+          "erro_grave": 0
         }
       ],
-      "diferenca_pp": 66.66666666666667,
-      "so_amostras_grandes": false
+      "diferenca_pp": null,
+      "grupos_comparados": [],
+      "erro_grave_total": 0
     }
   }
 }

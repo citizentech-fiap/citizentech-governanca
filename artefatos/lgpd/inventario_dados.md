@@ -19,10 +19,13 @@ municipal de agricultura que opera o robô e o painel). Encarregado no projeto: 
 | NIS e nome do favorecido (Portal da Transparência) | Dashboard | contar famílias pagas por município | dado público (art. 7º, § 3º) | só em memória | nenhuma | nome nunca carregado; NIS só para contar; nada gravado |
 | Pergunta ao assistente | GenAI | responder à dúvida | art. 7º, III | memória e cache de respostas | cache: 30 dias | máscara antes da busca e do modelo; log sem o texto da pergunta |
 | Conversa usada para avaliar o assistente | GenAI | melhorar a qualidade das respostas | art. 7º, I (consentimento) | conjunto de avaliação | 1 ano, depois anonimizar | só com o [termo de consentimento](termo_consentimento_chat.docx) |
+| Pergunta mascarada enviada ao modelo de linguagem | GenAI | gerar a resposta | art. 7º, III, com transferência internacional (art. 33) | serviço Gemini do Google, fora do Brasil | não armazenada pelo projeto; política do fornecedor | máscara antes do envio; em operação real, contrato com cláusulas de proteção ou modelo hospedado no país |
 
 ## Lacunas conhecidas
 
 - A retenção proposta acima ainda não está implementada: pastas de pedidos processados, saídas e cache
   mantêm os arquivos até remoção manual.
 - A máscara usa expressões regulares e não cobre nomes próprios.
+- O protótipo usa a cota gratuita do Gemini, cujos termos permitem ao fornecedor usar o conteúdo enviado. Em
+  operação real, isso exige troca para plano pago com cláusulas contratuais (art. 33, II) ou modelo local.
 - Não há controle de acesso à planilha nem autenticação do gestor no painel.

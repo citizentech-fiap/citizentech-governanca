@@ -1,6 +1,6 @@
 # Metric Contracts recalculados
 
-Gerado em 13/11/2026 sobre as versões de `versoes.yaml`:
+Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os commits e o hash dos conjuntos de referência:
 
 - genai: `e3f65dd`
 - rpa: `c8dbe72`
@@ -42,13 +42,13 @@ Detalhe: pedidos: 60; respostas_automaticas: 29; classificados: 48.
 
 Nenhum alerta disparado.
 
-## MC-03 Perda estimada de safra por município (v1.0.0)
+## MC-03 Perda estimada de safra por município (v2.0.0)
 
 | Indicador | Valor | Baseline | Meta | Situação |
 |---|---|---|---|---|
-| Perda estimada de produção por município e safra (%) | 63,0% | não medido | 60,0% | atinge |
+| Perda estimada de produção por município e safra (%) | 63,0% | 58,1% | 60,0% | atinge |
 
-Valor e meta referem-se a: acerto do critério de 40% contra o IBGE no milho (cultura principal do painel).
+Valor e meta referem-se a: acerto do critério de 40% contra o IBGE no milho, cultura principal do painel.
 
 | Métrica de qualidade | Valor | Limite | Situação |
 |---|---|---|---|

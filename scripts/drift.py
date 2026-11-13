@@ -59,6 +59,8 @@ def calcular(dados_versoes=None):
         linhas.append(dict(safra=int(safra), psi=valor, faixa=classificar(valor),
                            mediana_razao=float(grupo.razao.median()),
                            acuracia_milho=acerto["acuracia"] if acerto else None,
+                           real_ge=acerto["real_ge"] if acerto else None,
+                           estimado_ge=acerto["estimado_ge"] if acerto else None,
                            pares=acerto["n"] if acerto else 0))
     tabela = pd.DataFrame(linhas)
     com_placar = tabela.dropna(subset=["acuracia_milho"])
@@ -71,27 +73,36 @@ def relatorio(tabela, correlacao, dados_versoes=None):
     linhas = comum.cabecalho("Mudança de distribuição da chuva por safra (PSI)", dados_versoes)
     linhas += [f"Variável: chuva de {JANELA_DIAS} dias dividida pela normal 1991-2020, por município e dia, "
                "de janeiro a junho. Referência de cada safra: as demais safras do histórico.", "",
-               "| Safra | PSI | Faixa | Chuva / normal (mediana) | Acerto do painel, milho | Pares |",
-               "|---|---|---|---|---|---|"]
+               "| Safra | PSI | Faixa | Chuva / normal (mediana) | Pares com perda real ≥ 40% | "
+               "Pares sinalizados pelo painel | Acerto, milho |",
+               "|---|---|---|---|---|---|---|"]
     for t in tabela.itertuples():
-        acerto = comum.pct(t.acuracia_milho) if t.acuracia_milho == t.acuracia_milho and t.acuracia_milho is not None \
-            else "sem dado do IBGE"
-        linhas.append(f"| {t.safra} | {comum.num(t.psi)} | {t.faixa} | {comum.num(t.mediana_razao)} | {acerto} | "
-                      f"{t.pares} |")
-    linhas += ["", f"Correlação de postos entre PSI e acerto do painel (safras com placar): {comum.num(correlacao)}."]
+        tem = t.acuracia_milho is not None and t.acuracia_milho == t.acuracia_milho
+        linhas.append(f"| {t.safra} | {comum.num(t.psi)} | {t.faixa} | {comum.num(t.mediana_razao)} | "
+                      f"{comum.pct(t.real_ge) if tem else 'sem dado do IBGE'} | "
+                      f"{comum.pct(t.estimado_ge) if tem else '-'} | {comum.pct(t.acuracia_milho) if tem else '-'} |")
+    acima = int((tabela.psi > 0.20).sum())
+    linhas += ["", f"Correlação de postos entre PSI e acerto do painel (safras com placar): {comum.num(correlacao)}.",
+               f"Safras com PSI acima de 0,20: {acima} de {len(tabela)}. A chuva do semiárido muda muito de um ano para "
+               "outro, então o PSI da chuva serve de contexto; o alarme do painel é o placar anual contra o IBGE.", ""]
     com_placar = tabela.dropna(subset=["acuracia_milho"])
-    if len(com_placar) > 2:
-        extremas = ", ".join(str(s) for s in com_placar.nlargest(2, "psi").safra)
-        piores = ", ".join(str(s) for s in com_placar.nsmallest(2, "acuracia_milho").safra)
-        sentido = ("o acerto é maior nas safras em que a chuva mais se afastou do histórico"
-                   if correlacao > 0 else "o acerto cai nas safras em que a chuva mais se afastou do histórico")
-        linhas.append(f"Leitura: {sentido}. Maiores PSI: {extremas}. Menores acertos: {piores}.")
+    erros = com_placar[com_placar.acuracia_milho < 0.5]
+    if len(erros):
+        linhas.append("Safras com acerto abaixo de 50%:")
+        for t in erros.itertuples():
+            tipo = ("perda real não sinalizada" if t.estimado_ge < t.real_ge else "falso alarme")
+            linhas.append(f"- {t.safra}: {tipo} (perda real em {comum.pct(t.real_ge)} dos pares; painel sinalizou "
+                          f"{comum.pct(t.estimado_ge)}).")
+        linhas.append("")
+    linhas.append("Nas safras em que quase todos ou quase nenhum dos pares teve perda real, o acerto alto vem da "
+                  "própria prevalência, não de discriminação entre municípios.")
     return "\n".join(linhas + [""])
 
 
 def main():
     try:
         dados_versoes = comum.versoes()
+        comum.verificar_versoes(dados_versoes)
         tabela, correlacao = calcular(dados_versoes)
     except (FileNotFoundError, RuntimeError, KeyError) as erro:
         print(f"Não foi possível calcular o PSI: {erro}")

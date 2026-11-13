@@ -43,6 +43,25 @@ def git(pasta_repo, *args):
     return saida.stdout.strip()
 
 
+def verificar_versoes(dados=None):
+    """Interrompe se algum módulo não estiver no commit registrado ou se um conjunto de referência mudou."""
+    dados = dados or versoes()
+    registrados = json.loads((RAIZ / "golden" / "hashes.json").read_text(encoding="utf-8"))["hashes"]
+    problemas = []
+    for modulo, d in dados.items():
+        base = pasta(modulo, dados)
+        atual = git(base, "rev-parse", "HEAD")
+        if atual != d["commit"]:
+            problemas.append(f"{modulo} em {atual[:7]}, registrado {d['commit'][:7]}")
+        if git(base, "status", "--porcelain", "--untracked-files=no"):
+            problemas.append(f"{modulo} com alteração local sem commit")
+        for rel in d["conjuntos_referencia"]:
+            if not (base / rel).exists() or sha256(base / rel) != registrados.get(modulo, {}).get(rel):
+                problemas.append(f"{modulo}: {rel} diferente do registrado")
+    if problemas:
+        raise RuntimeError("versões não conferem: " + "; ".join(problemas))
+
+
 def python_no_modulo(pasta_repo, codigo, ambiente=None, timeout=600):
     """Executa código Python dentro da pasta de um módulo e devolve o JSON impresso por ele."""
     env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1", **(ambiente or {})}
@@ -72,8 +91,12 @@ for cultura in cfg["modelo_hidrico"]["culturas"]:
         sensibilidade=float(estimado[real].mean()), especificidade=float((~estimado)[~real].mean()),
         excluidos=p["pares_excluidos"], perda_min=float(est.min()), perda_max=float(est.max()),
         n_estimativas=int(len(est)), criterio=limiar,
-        por_uf={uf: dict(acuracia=float(g.mean()), n=int(len(g))) for uf, g in acerto.groupby(pares.uf)},
-        por_ano={int(a): dict(acuracia=float(g.mean()), n=int(len(g))) for a, g in acerto.groupby(pares.ano)})
+        por_uf={uf: dict(acuracia=float(acerto[g.index].mean()), n=int(len(g)), com_perda=int(real[g.index].sum()),
+                         sensibilidade=float(estimado[g.index][real[g.index]].mean()) if real[g.index].any() else None)
+                for uf, g in pares.groupby("uf")},
+        por_ano={int(a): dict(acuracia=float(acerto[g.index].mean()), n=int(len(g)),
+                              real_ge=float(real[g.index].mean()), estimado_ge=float(estimado[g.index].mean()))
+                 for a, g in pares.groupby("ano")})
 print(json.dumps(saida))
 """
 
@@ -105,6 +128,7 @@ def gravar(nome, texto, dados=None):
 
 def cabecalho(titulo, dados_versoes=None):
     dados_versoes = dados_versoes or versoes()
-    linhas = [f"# {titulo}", "", f"Gerado em {date.today():%d/%m/%Y} sobre as versões de `versoes.yaml`:", ""]
+    linhas = [f"# {titulo}", "", f"Gerado em {date.today():%d/%m/%Y} sobre as versões de `versoes.yaml`, depois de "
+                                 "conferir os commits e o hash dos conjuntos de referência:", ""]
     linhas += [f"- {m}: `{d['commit'][:7]}`" for m, d in dados_versoes.items()]
     return linhas + [""]

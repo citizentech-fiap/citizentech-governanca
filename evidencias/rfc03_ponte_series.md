@@ -1,6 +1,6 @@
 # RFC-03: ponte entre séries da perda estimada
 
-Gerado em 13/11/2026 sobre as versões de `versoes.yaml`:
+Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os commits e o hash dos conjuntos de referência:
 
 - genai: `e3f65dd`
 - rpa: `c8dbe72`

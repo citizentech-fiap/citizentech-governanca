@@ -3,7 +3,8 @@
 | Antipadrão | Situação | Como evitamos ou onde ainda aparece |
 |---|---|---|
 | Gate de carimbo (aprovação sem critério) | evitado | o gate tem oito critérios verificados por script e grava o detalhe de cada um em `evidencias/gate.md` |
-| Gate informal (sem registro) | evitado | cada execução fica versionada em `evidencias/` com o commit avaliado |
+| Gate informal (sem registro) | parcial | o resultado do gate fica versionado com o commit avaliado, mas a aprovação do Metric Owner ainda não tem registro formal com data e decisão |
+| Contrato depois do painel | presente | os Metric Contracts foram escritos depois que os módulos já existiam; foram feitos a partir das métricas que os módulos já mediam e passam a valer para as próximas versões |
 | Mudança silenciosa | evitado | conjuntos de referência com hash; `versoes.yaml`; RFC para mudança de significado |
 | Multiplicidade de contas | evitado | uma definição por métrica nos Metric Contracts, calculada pelo código do próprio módulo |
 | Planilha paralela | evitado | a planilha do robô é o registro oficial e o painel a lê pelas colunas do contrato, sem cópia editada à mão |
