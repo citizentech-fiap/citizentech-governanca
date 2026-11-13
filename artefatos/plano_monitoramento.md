@@ -31,6 +31,7 @@ acompanha e o que fazer. Os responsáveis seguem o [RACI](raci.md).
 |---|---|---|---|---|
 | Estimativa fora de 0 a 100 | nenhuma | a cada versão | Luís | bloquear a versão |
 | Acerto do critério de 40% contra o IBGE | milho ≥ 60%; feijão ≥ 55% | anual, quando sai a PAM | Ricardo (Metric Owner) | abaixo: revisar calibração e avisar o gestor no painel |
+| Perdas reais sinalizadas (sensibilidade) | ≥ 60% nas duas culturas | anual, quando sai a PAM | Ricardo (Metric Owner) | abaixo (situação atual): orientar o gestor a não usar a falta de alerta como prova de ausência de perda |
 | PSI da chuva de 30 dias contra o histórico | < 0,10 estável; 0,10 a 0,20 investigar; > 0,20 mudança relevante | mensal durante a safra | Jonas (validação) | acima de 0,20: conferir o placar de safras parecidas antes de confiar na sugestão |
 | Acerto por UF | diferença ≤ 5 p.p. com n ≥ 30 | anual | Jonas (validação) | acima: manter exceção EX-01 e o aviso no material de uso |
 | Decisões sem identificação do gestor | 0 | contínuo (bloqueado na tela e no pipeline) | Luís | qualquer caso: incidente |

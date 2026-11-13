@@ -1,12 +1,12 @@
 id: MC-03
 nome: Perda estimada de safra por município
-versao: 1.0.0
+versao: 2.0.0
 modulo: dashboard
 nome_projeto: CitizenTech
 responsavel_negocio: Ricardo de Paiva Melo (Metric Owner)
 responsavel_tecnico: Luís Fernando de Oliveira Salgado
 data_criacao: 2026-11-13
-revisao: "-"
+revisao: RFC-03 (perda relativa à normal 1991-2020)
 
 caso: >
   O painel estima, para cada município do semiárido, a perda de safra causada pela falta de chuva e
@@ -29,11 +29,11 @@ indicador:
   elegibilidade: >
     Municípios do semiárido do catálogo do painel (23), culturas milho e feijão, safra de janeiro a
     junho. Antes de 1º de março o painel mostra só o sinal de chuva, sem estimar perda.
-  baseline: null
-  baseline_origem: acurácia contra o IBGE antes da calibração pela normal não foi medida
+  baseline: 0.581
+  baseline_origem: fórmula anterior ao RFC-03 recalculada sobre os mesmos dados, em evidencias/rfc03_ponte_series.md
   meta: 0.60
-  meta_descricao: acerto do critério de 40% contra o IBGE no milho (cultura principal do painel)
-  atualizacao: diária durante a safra (dados de chuva); placar anual quando o IBGE publica a PAM
+  meta_descricao: acerto do critério de 40% contra o IBGE no milho, cultura principal do painel
+  atualizacao: diariamente durante a safra (dados de chuva) e uma vez por ano no placar, quando o IBGE publica a PAM
   fonte: dashboard/pipelines/risco.py e dashboard/pipelines/realidade.py (Open-Meteo ERA5 e IBGE SIDRA 1612)
 
 qualidade:
@@ -46,6 +46,15 @@ qualidade:
   - chave: spearman_milho
     nome: Correlação de postos entre perda estimada e real, milho
     limite: ">= 0.40"
+  - chave: sensibilidade_milho
+    nome: Perdas reais de 40% ou mais que o painel sinaliza, milho
+    limite: ">= 0.60"
+  - chave: sensibilidade_feijao
+    nome: Perdas reais de 40% ou mais que o painel sinaliza, feijão
+    limite: ">= 0.60"
+  - chave: especificidade_milho
+    nome: Safras sem perda de 40% que o painel reconhece como tal, milho
+    limite: ">= 0.60"
   - chave: invariante_faixa
     nome: Toda estimativa entre 0 e 100
     limite: "== 1"
@@ -66,6 +75,20 @@ alertas:
     valor: 0.55
     nivel: alerta
     acao: Revisar a calibração e avisar o gestor no painel.
+  - metrica: sensibilidade_milho
+    operador: "<"
+    valor: 0.60
+    nivel: alerta
+    acao: >
+      O painel deixa de sinalizar parte das perdas reais. Orientar o gestor a não tratar a ausência de
+      alerta como prova de que não houve perda e manter a inscrição aberta a todos os municípios.
+  - metrica: sensibilidade_feijao
+    operador: "<"
+    valor: 0.60
+    nivel: alerta
+    acao: >
+      O painel deixa de sinalizar parte das perdas reais. Orientar o gestor a não tratar a ausência de
+      alerta como prova de que não houve perda e manter a inscrição aberta a todos os municípios.
 
 monitoramento: >
   metricas.py recalcula o placar com o código do próprio painel. drift.py compara a chuva de cada

@@ -28,7 +28,7 @@ indicador:
     pelas métricas de qualidade abaixo. O julgamento segue as regras escritas em
     revisao_independente.md do módulo.
   baseline: 0.682
-  baseline_origem: rodada 1, prompt v2, 05/11/2026 (15 de 22)
+  baseline_origem: rodada 1, prompt v2, 05/11/2026, 15 de 22
   meta: 0.90
   atualizacao: a cada mudança de prompt, modelo, corpus ou limiar, antes da promoção da versão
   fonte: genAI/eval/resultados/ponta_a_ponta/gemini/sentence_transformers/v3_verificacao/revisao_independente.csv

@@ -35,6 +35,8 @@ como mapa da integração: cada função junta controles que estão espalhados p
 | Vazamentos com proteções ligadas | 0 em 12 cenários | `evidencias/metricas.md` |
 | Decisão correta e erro grave do robô | 83,3% e 0 | `evidencias/metricas.md` |
 | Acerto do painel contra o IBGE | milho 63,0%, feijão 57,8% | `evidencias/metricas.md` |
+| Perdas reais sinalizadas pelo painel | milho 51,2%, feijão 43,7% (meta 60%, alerta) | `evidencias/metricas.md` |
+| Efeito da calibração pela normal (antes e depois) | acerto balanceado sobe, sensibilidade cai pela metade | `evidencias/rfc03_ponte_series.md` |
 | Diferença entre subgrupos | painel: 14,3 p.p. (milho) e 22,0 p.p. (feijão) entre UFs; robô: amostras pequenas | `evidencias/subgrupos.md` |
 | Mudança de distribuição da chuva | PSI por safra; correlação com o acerto 0,69 | `evidencias/drift.md` |
 | Conjuntos de referência intactos | hash SHA-256 de 12 arquivos | `golden/hashes.json` |

@@ -64,10 +64,12 @@ for cultura in cfg["modelo_hidrico"]["culturas"]:
     p = validacao(cultura)
     d = p["dados"]
     pares = d.dropna(subset=["perda_estimada_pct", "perda_producao_pct"])
-    acerto = pares.perda_estimada_pct.ge(limiar).eq(pares.perda_producao_pct.ge(limiar))
+    estimado, real = pares.perda_estimada_pct.ge(limiar), pares.perda_producao_pct.ge(limiar)
+    acerto = estimado.eq(real)
     est = d.perda_estimada_pct.dropna()
     saida[cultura] = dict(
         acuracia=p["acuracia"], spearman=p["spearman"], pares=p["pares_validos"],
+        sensibilidade=float(estimado[real].mean()), especificidade=float((~estimado)[~real].mean()),
         excluidos=p["pares_excluidos"], perda_min=float(est.min()), perda_max=float(est.max()),
         n_estimativas=int(len(est)), criterio=limiar,
         por_uf={uf: dict(acuracia=float(g.mean()), n=int(len(g))) for uf, g in acerto.groupby(pares.uf)},

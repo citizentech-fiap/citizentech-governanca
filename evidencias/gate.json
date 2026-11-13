@@ -1,0 +1,164 @@
+{
+  "genai": {
+    "situacao": "aprovado",
+    "criterios": [
+      {
+        "criterio": "Rastreabilidade: código no commit registrado, sem alteração local",
+        "papel": "Engenharia",
+        "estado": "ok",
+        "detalhe": "commit e3f65dd, árvore limpa"
+      },
+      {
+        "criterio": "Reprodutibilidade: suíte de testes do módulo passa",
+        "papel": "Engenharia",
+        "estado": "ok",
+        "detalhe": "63 testes OK"
+      },
+      {
+        "criterio": "Conjuntos de referência sem alteração (hash SHA-256)",
+        "papel": "Data Steward",
+        "estado": "ok",
+        "detalhe": "3 arquivos iguais"
+      },
+      {
+        "criterio": "Desempenho: Metric Contract sem alerta crítico",
+        "papel": "Metric Owner",
+        "estado": "ok",
+        "detalhe": "MC-01: 100,0%; 1 alerta(s) não crítico(s): abstencao_correta"
+      },
+      {
+        "criterio": "Equidade: diferença entre subgrupos dentro de 5 p.p.",
+        "papel": "Model Validator",
+        "estado": "não se aplica",
+        "detalhe": "não aplicável: as perguntas não têm atributo de grupo; risco tratado por abstenção"
+      },
+      {
+        "criterio": "Model Card completo, com explicabilidade",
+        "papel": "Model Validator",
+        "estado": "ok",
+        "detalhe": "artefatos/model_cards/assistente_rag.md"
+      },
+      {
+        "criterio": "Plano de monitoramento com limiares e responsáveis",
+        "papel": "Metric Owner",
+        "estado": "ok",
+        "detalhe": "artefatos/plano_monitoramento.md"
+      },
+      {
+        "criterio": "Revisão LGPD: inventário de dados e RIPD",
+        "papel": "Encarregado de dados",
+        "estado": "ok",
+        "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"
+      }
+    ],
+    "commit": "e3f65ddf761b53605e0e354a85a53e5c8cad29e7"
+  },
+  "rpa": {
+    "situacao": "aprovado com exceção",
+    "criterios": [
+      {
+        "criterio": "Rastreabilidade: código no commit registrado, sem alteração local",
+        "papel": "Engenharia",
+        "estado": "ok",
+        "detalhe": "commit c8dbe72, árvore limpa"
+      },
+      {
+        "criterio": "Reprodutibilidade: suíte de testes do módulo passa",
+        "papel": "Engenharia",
+        "estado": "ok",
+        "detalhe": "47 testes OK"
+      },
+      {
+        "criterio": "Conjuntos de referência sem alteração (hash SHA-256)",
+        "papel": "Data Steward",
+        "estado": "ok",
+        "detalhe": "3 arquivos iguais"
+      },
+      {
+        "criterio": "Desempenho: Metric Contract sem alerta crítico",
+        "papel": "Metric Owner",
+        "estado": "ok",
+        "detalhe": "MC-02: 83,3%"
+      },
+      {
+        "criterio": "Equidade: diferença entre subgrupos dentro de 5 p.p.",
+        "papel": "Model Validator",
+        "estado": "exceção EX-02",
+        "detalhe": "uf: 50,0 p.p.; servico_real: 66,7 p.p. (exceção até 2027-03-01, responsável: Jonas Alaf (Metric Owner do MC-02))"
+      },
+      {
+        "criterio": "Model Card completo, com explicabilidade",
+        "papel": "Model Validator",
+        "estado": "ok",
+        "detalhe": "artefatos/model_cards/classificador_triagem.md"
+      },
+      {
+        "criterio": "Plano de monitoramento com limiares e responsáveis",
+        "papel": "Metric Owner",
+        "estado": "ok",
+        "detalhe": "artefatos/plano_monitoramento.md"
+      },
+      {
+        "criterio": "Revisão LGPD: inventário de dados e RIPD",
+        "papel": "Encarregado de dados",
+        "estado": "ok",
+        "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"
+      }
+    ],
+    "commit": "c8dbe72604dfcefcfea50cd9ea9c599f2d3b8a40"
+  },
+  "dashboard": {
+    "situacao": "aprovado com exceção",
+    "criterios": [
+      {
+        "criterio": "Rastreabilidade: código no commit registrado, sem alteração local",
+        "papel": "Engenharia",
+        "estado": "ok",
+        "detalhe": "commit 1514bb2, árvore limpa"
+      },
+      {
+        "criterio": "Reprodutibilidade: suíte de testes do módulo passa",
+        "papel": "Engenharia",
+        "estado": "ok",
+        "detalhe": "74 testes OK"
+      },
+      {
+        "criterio": "Conjuntos de referência sem alteração (hash SHA-256)",
+        "papel": "Data Steward",
+        "estado": "ok",
+        "detalhe": "6 arquivos iguais"
+      },
+      {
+        "criterio": "Desempenho: Metric Contract sem alerta crítico",
+        "papel": "Metric Owner",
+        "estado": "ok",
+        "detalhe": "MC-03: 63,0%; 2 alerta(s) não crítico(s): sensibilidade_milho, sensibilidade_feijao"
+      },
+      {
+        "criterio": "Equidade: diferença entre subgrupos dentro de 5 p.p.",
+        "papel": "Model Validator",
+        "estado": "exceção EX-01",
+        "detalhe": "milho: 14,3 p.p.; feijao: 22,0 p.p. (exceção até 2027-03-01, responsável: Ricardo de Paiva Melo (Metric Owner do MC-03))"
+      },
+      {
+        "criterio": "Model Card completo, com explicabilidade",
+        "papel": "Model Validator",
+        "estado": "ok",
+        "detalhe": "artefatos/model_cards/modelo_hidrico.md"
+      },
+      {
+        "criterio": "Plano de monitoramento com limiares e responsáveis",
+        "papel": "Metric Owner",
+        "estado": "ok",
+        "detalhe": "artefatos/plano_monitoramento.md"
+      },
+      {
+        "criterio": "Revisão LGPD: inventário de dados e RIPD",
+        "papel": "Encarregado de dados",
+        "estado": "ok",
+        "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"
+      }
+    ],
+    "commit": "1514bb2128284acbc06cda9ba6bb205d489a9845"
+  }
+}

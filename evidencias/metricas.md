@@ -55,8 +55,14 @@ Valor e meta referem-se a: acerto do critério de 40% contra o IBGE no milho (cu
 | Acerto do critério de 40% contra a perda real do IBGE, milho | 63,0% | ≥ 60,0% | ok |
 | Acerto do critério de 40% contra a perda real do IBGE, feijão | 57,8% | ≥ 55,0% | ok |
 | Correlação de postos entre perda estimada e real, milho | 0,47 | ≥ 0,40 | ok |
+| Perdas reais de 40% ou mais que o painel sinaliza, milho | 51,2% | ≥ 60,0% | fora do limite |
+| Perdas reais de 40% ou mais que o painel sinaliza, feijão | 43,7% | ≥ 60,0% | fora do limite |
+| Safras sem perda de 40% que o painel reconhece como tal, milho | 76,3% | ≥ 60,0% | ok |
 | Toda estimativa entre 0 e 100 | 1 | == 1 | ok |
 
 Detalhe: milho: 322 pares municipio-safra; perda entre 0,0 e 100,0; feijao: 322 pares municipio-safra; perda entre 0,0 e 97,7.
 
-Nenhum alerta disparado.
+Alertas disparados:
+
+- **alerta** (sensibilidade_milho < 60,0%): O painel deixa de sinalizar parte das perdas reais. Orientar o gestor a não tratar a ausência de alerta como prova de que não houve perda e manter a inscrição aberta a todos os municípios.
+- **alerta** (sensibilidade_feijao < 60,0%): O painel deixa de sinalizar parte das perdas reais. Orientar o gestor a não tratar a ausência de alerta como prova de que não houve perda e manter a inscrição aberta a todos os municípios.

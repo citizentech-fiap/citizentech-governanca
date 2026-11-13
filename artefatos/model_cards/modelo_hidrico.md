@@ -34,7 +34,15 @@
 |---|---|---|
 | Acerto do critério de 40% contra o IBGE | 63,0% | 57,8% |
 | Correlação de postos (Spearman) | 0,47 | 0,44 |
+| Perdas reais de 40% ou mais sinalizadas (sensibilidade) | 51,2% | 43,7% |
+| Safras sem perda de 40% reconhecidas (especificidade) | 76,3% | 80,0% |
 | Pares município-safra | 322 | 322 |
+
+O acerto sozinho engana: antes da calibração pela normal, o modelo marcava perda de 40% em cerca de 90% dos
+pares e acertava 66,8% no feijão só porque a maioria dos pares teve perda real. Depois da calibração, o
+acerto balanceado subiu nas duas culturas (milho de 55,8% para 63,7%; feijão de 58,7% para 61,8%), mas o
+painel passou a deixar de sinalizar cerca de metade das perdas reais. Ver
+[`evidencias/rfc03_ponte_series.md`](../../evidencias/rfc03_ponte_series.md) e o RFC-03.
 
 Por UF, o acerto no milho vai de 46,4% (RN) a 75,0% (PI); entre as UFs com pelo menos 30 pares, de 55,4%
 (BA) a 69,6% (CE). A diferença passa do limite de 5 p.p. e está registrada como exceção EX-01.
@@ -55,6 +63,8 @@ intermediária (2016: 13,0%; 2021: 17,4%). Ver [`evidencias/drift.md`](../../evi
 - Só chuva e demanda hídrica: praga, preço, área não plantada e distribuição da chuva dentro da safra ficam
   de fora. É provável que isso explique os anos 2016 a 2019 e 2021, em que o modelo não vê a perda.
 - A calibração e a avaliação usam as mesmas safras (2012 a 2025). Não há conjunto de validação separado.
+- Sensibilidade abaixo da meta: a ausência de alerta não prova que não houve perda. O painel não deve ser
+  usado para fechar a inscrição de nenhum município.
 - A PAM sai com um ano de atraso; o placar da safra corrente só fecha no ano seguinte.
 - Sem balanço de água no solo nem fenologia da cultura.
 

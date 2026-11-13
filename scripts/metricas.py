@@ -78,6 +78,9 @@ def dashboard(placar):
         "acuracia_milho": milho["acuracia"],
         "acuracia_feijao": feijao["acuracia"],
         "spearman_milho": milho["spearman"],
+        "sensibilidade_milho": milho["sensibilidade"],
+        "sensibilidade_feijao": feijao["sensibilidade"],
+        "especificidade_milho": milho["especificidade"],
         "invariante_faixa": int(faixa),
         "_detalhe": {c: f"{v['pares']} pares municipio-safra; perda entre {comum.num(v['perda_min'], 1)} e "
                         f"{comum.num(v['perda_max'], 1)}" for c, v in placar.items()},
