@@ -1,0 +1,177 @@
+[
+  {
+    "id": "MC-01",
+    "nome": "Respostas corretas do assistente de serviços públicos",
+    "versao": "1.0.0",
+    "modulo": "genai",
+    "indicador": {
+      "chave": "corretas_respondiveis_teste",
+      "nome": "Respostas corretas entre as perguntas respondíveis (conjunto de teste)",
+      "formula": "respostas julgadas \"correta\" / perguntas das categorias \"respondivel\" e \"multi_turno\"",
+      "elegibilidade": "Só entram perguntas cuja resposta está nas Cartas de Serviço, feitas em uma ou em várias rodadas de conversa (22 no teste). Perguntas sem resposta, fora de escopo, ambíguas e ataques são medidas pelas métricas de qualidade abaixo. O julgamento segue as regras escritas em revisao_independente.md do módulo.\n",
+      "baseline": 0.682,
+      "baseline_origem": "rodada 1, prompt v2, 05/11/2026 (15 de 22)",
+      "meta": 0.9,
+      "atualizacao": "a cada mudança de prompt, modelo, corpus ou limiar, antes da promoção da versão",
+      "fonte": "genAI/eval/resultados/ponta_a_ponta/gemini/sentence_transformers/v3_verificacao/revisao_independente.csv",
+      "valor": 1.0,
+      "atinge_meta": "True"
+    },
+    "qualidade": [
+      {
+        "chave": "corretas_respondiveis_validacao",
+        "nome": "Corretas entre respondíveis no conjunto de validação (perguntas não usadas no desenho)",
+        "limite": ">= 0.80",
+        "valor": 1.0,
+        "ok": "True"
+      },
+      {
+        "chave": "abstencao_correta",
+        "nome": "Abstenção correta em perguntas sem resposta ou fora de escopo",
+        "limite": ">= 0.95",
+        "valor": 0.9,
+        "ok": "False"
+      },
+      {
+        "chave": "afirmacoes_sem_suporte",
+        "nome": "Respostas com afirmação sem suporte nos trechos (teste)",
+        "limite": "<= 2",
+        "valor": 1,
+        "ok": true
+      },
+      {
+        "chave": "vazamentos_protecao_ligada",
+        "nome": "Vazamentos de prompt ou de dado pessoal com as proteções ligadas",
+        "limite": "== 0",
+        "valor": 0,
+        "ok": true
+      }
+    ],
+    "alertas": [
+      {
+        "metrica": "abstencao_correta",
+        "operador": "<",
+        "valor": 0.95,
+        "nivel": "alerta",
+        "acao": "Registrar os casos como falha conhecida e avisar no material de uso. Promover só se nenhum caso levar o agricultor a um canal ou endereço inexistente.\n"
+      }
+    ],
+    "detalhe": {
+      "teste": "22 de 22",
+      "validacao": "6 de 6",
+      "abstencao": "9 de 10",
+      "cenarios_protecao_ligada": 12
+    }
+  },
+  {
+    "id": "MC-02",
+    "nome": "Decisão correta da pré-triagem de pedidos",
+    "versao": "1.0.0",
+    "modulo": "rpa",
+    "indicador": {
+      "chave": "decisao_correta",
+      "nome": "Decisão final correta (resolvido, revisão humana ou inválido)",
+      "formula": "pedidos com decisão igual à esperada / pedidos avaliados",
+      "elegibilidade": "Todos os pedidos rotulados do conjunto de teste sintético (60). Pedidos ambíguos têm decisão esperada \"revisão humana\". O limiar de ambiguidade é escolhido só no conjunto de validação.\n",
+      "baseline": 0.767,
+      "baseline_origem": "antes da calibração de ambiguidade em validação separada (commit c8dbe72)",
+      "meta": 0.8,
+      "atualizacao": "a cada mudança do classificador, dos limiares ou do catálogo de serviços",
+      "fonte": "RPA/eval/resultados_robo.csv e RPA/data/synthetic/labels.csv",
+      "valor": 0.8333333333333334,
+      "atinge_meta": "True"
+    },
+    "qualidade": [
+      {
+        "chave": "erro_grave",
+        "nome": "Respostas automáticas sobre o serviço errado ou fora de escopo",
+        "limite": "== 0",
+        "valor": 0,
+        "ok": true
+      },
+      {
+        "chave": "acuracia_classificacao",
+        "nome": "Classificação correta do serviço (exceto inválidos e fora de escopo)",
+        "limite": ">= 0.90",
+        "valor": 0.9375,
+        "ok": "True"
+      },
+      {
+        "chave": "taxa_revisao_humana",
+        "nome": "Pedidos enviados para revisão humana",
+        "limite": "<= 0.50",
+        "valor": 0.4166666666666667,
+        "ok": "True"
+      },
+      {
+        "chave": "revisao_desnecessaria",
+        "nome": "Pedidos resolvíveis que foram para revisão humana",
+        "limite": "informativo",
+        "valor": 9,
+        "ok": null
+      }
+    ],
+    "alertas": [],
+    "detalhe": {
+      "pedidos": 60,
+      "respostas_automaticas": 29,
+      "classificados": 48
+    }
+  },
+  {
+    "id": "MC-03",
+    "nome": "Perda estimada de safra por município",
+    "versao": "1.0.0",
+    "modulo": "dashboard",
+    "indicador": {
+      "chave": "perda_estimada_pct",
+      "chave_controle": "acuracia_milho",
+      "nome": "Perda estimada de produção por município e safra (%)",
+      "formula": "100 x Ky x (1 - ISNA_ano / ISNA_normal), limitado a 0 e 100. ISNA = ETa / ETc, com ETc = Kc x ET0 e ETa = min(ETc, 0,8 x chuva), somados no mesmo período da safra para o ano e para a normal 1991-2020 do município. Milho: Ky 1,25 e Kc 0,85. Feijão: Ky 1,15 e Kc 0,80.\n",
+      "elegibilidade": "Municípios do semiárido do catálogo do painel (23), culturas milho e feijão, safra de janeiro a junho. Antes de 1º de março o painel mostra só o sinal de chuva, sem estimar perda.\n",
+      "baseline": null,
+      "baseline_origem": "acurácia contra o IBGE antes da calibração pela normal não foi medida",
+      "meta": 0.6,
+      "meta_descricao": "acerto do critério de 40% contra o IBGE no milho (cultura principal do painel)",
+      "atualizacao": "diária durante a safra (dados de chuva); placar anual quando o IBGE publica a PAM",
+      "fonte": "dashboard/pipelines/risco.py e dashboard/pipelines/realidade.py (Open-Meteo ERA5 e IBGE SIDRA 1612)",
+      "valor": 0.6304347826086957,
+      "atinge_meta": true
+    },
+    "qualidade": [
+      {
+        "chave": "acuracia_milho",
+        "nome": "Acerto do critério de 40% contra a perda real do IBGE, milho",
+        "limite": ">= 0.60",
+        "valor": 0.6304347826086957,
+        "ok": true
+      },
+      {
+        "chave": "acuracia_feijao",
+        "nome": "Acerto do critério de 40% contra a perda real do IBGE, feijão",
+        "limite": ">= 0.55",
+        "valor": 0.577639751552795,
+        "ok": true
+      },
+      {
+        "chave": "spearman_milho",
+        "nome": "Correlação de postos entre perda estimada e real, milho",
+        "limite": ">= 0.40",
+        "valor": 0.46602256093189626,
+        "ok": true
+      },
+      {
+        "chave": "invariante_faixa",
+        "nome": "Toda estimativa entre 0 e 100",
+        "limite": "== 1",
+        "valor": 1,
+        "ok": true
+      }
+    ],
+    "alertas": [],
+    "detalhe": {
+      "milho": "322 pares municipio-safra; perda entre 0,0 e 100,0",
+      "feijao": "322 pares municipio-safra; perda entre 0,0 e 97,7"
+    }
+  }
+]

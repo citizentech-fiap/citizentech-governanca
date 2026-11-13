@@ -1,0 +1,214 @@
+{
+  "painel": {
+    "milho": {
+      "tabela": [
+        {
+          "uf": "AL",
+          "acuracia": 0.6428571428571429,
+          "n": 28
+        },
+        {
+          "uf": "BA",
+          "acuracia": 0.5535714285714286,
+          "n": 56
+        },
+        {
+          "uf": "CE",
+          "acuracia": 0.6964285714285714,
+          "n": 56
+        },
+        {
+          "uf": "PB",
+          "acuracia": 0.6904761904761905,
+          "n": 42
+        },
+        {
+          "uf": "PE",
+          "acuracia": 0.6,
+          "n": 70
+        },
+        {
+          "uf": "PI",
+          "acuracia": 0.75,
+          "n": 28
+        },
+        {
+          "uf": "RN",
+          "acuracia": 0.4642857142857143,
+          "n": 28
+        },
+        {
+          "uf": "SE",
+          "acuracia": 0.7142857142857143,
+          "n": 14
+        }
+      ],
+      "diferenca_pp": 14.28571428571428,
+      "so_amostras_grandes": true,
+      "geral": 0.6304347826086957
+    },
+    "feijao": {
+      "tabela": [
+        {
+          "uf": "AL",
+          "acuracia": 0.5357142857142857,
+          "n": 28
+        },
+        {
+          "uf": "BA",
+          "acuracia": 0.5178571428571429,
+          "n": 56
+        },
+        {
+          "uf": "CE",
+          "acuracia": 0.6071428571428571,
+          "n": 56
+        },
+        {
+          "uf": "PB",
+          "acuracia": 0.7380952380952381,
+          "n": 42
+        },
+        {
+          "uf": "PE",
+          "acuracia": 0.5714285714285714,
+          "n": 70
+        },
+        {
+          "uf": "PI",
+          "acuracia": 0.6071428571428571,
+          "n": 28
+        },
+        {
+          "uf": "RN",
+          "acuracia": 0.5,
+          "n": 28
+        },
+        {
+          "uf": "SE",
+          "acuracia": 0.42857142857142855,
+          "n": 14
+        }
+      ],
+      "diferenca_pp": 22.023809523809522,
+      "so_amostras_grandes": true,
+      "geral": 0.577639751552795
+    }
+  },
+  "robo": {
+    "uf": {
+      "tabela": [
+        {
+          "grupo": "AL",
+          "n": 8,
+          "decisao_correta": 0.5,
+          "revisao_humana": 0.75
+        },
+        {
+          "grupo": "BA",
+          "n": 4,
+          "decisao_correta": 1.0,
+          "revisao_humana": 0.5
+        },
+        {
+          "grupo": "CE",
+          "n": 6,
+          "decisao_correta": 0.8333333333333334,
+          "revisao_humana": 0.16666666666666666
+        },
+        {
+          "grupo": "PB",
+          "n": 6,
+          "decisao_correta": 1.0,
+          "revisao_humana": 0.5
+        },
+        {
+          "grupo": "PE",
+          "n": 32,
+          "decisao_correta": 0.84375,
+          "revisao_humana": 0.375
+        },
+        {
+          "grupo": "PI",
+          "n": 3,
+          "decisao_correta": 1.0,
+          "revisao_humana": 0.3333333333333333
+        },
+        {
+          "grupo": "SE",
+          "n": 1,
+          "decisao_correta": 1.0,
+          "revisao_humana": 0.0
+        }
+      ],
+      "diferenca_pp": 50.0,
+      "so_amostras_grandes": false
+    },
+    "servico_real": {
+      "tabela": [
+        {
+          "grupo": "aposentadoria_rural",
+          "n": 7,
+          "decisao_correta": 0.8571428571428571,
+          "revisao_humana": 0.42857142857142855
+        },
+        {
+          "grupo": "bolsa_familia",
+          "n": 5,
+          "decisao_correta": 1.0,
+          "revisao_humana": 0.2
+        },
+        {
+          "grupo": "bpc",
+          "n": 3,
+          "decisao_correta": 1.0,
+          "revisao_humana": 0.0
+        },
+        {
+          "grupo": "cadunico",
+          "n": 6,
+          "decisao_correta": 0.8333333333333334,
+          "revisao_humana": 0.3333333333333333
+        },
+        {
+          "grupo": "caf",
+          "n": 8,
+          "decisao_correta": 0.875,
+          "revisao_humana": 0.375
+        },
+        {
+          "grupo": "cpf",
+          "n": 3,
+          "decisao_correta": 0.3333333333333333,
+          "revisao_humana": 0.6666666666666666
+        },
+        {
+          "grupo": "fora_escopo",
+          "n": 6,
+          "decisao_correta": 1.0,
+          "revisao_humana": 1.0
+        },
+        {
+          "grupo": "garantia_safra",
+          "n": 8,
+          "decisao_correta": 0.875,
+          "revisao_humana": 0.375
+        },
+        {
+          "grupo": "pronaf",
+          "n": 8,
+          "decisao_correta": 0.75,
+          "revisao_humana": 0.25
+        },
+        {
+          "grupo": "salario_maternidade_rural",
+          "n": 6,
+          "decisao_correta": 0.6666666666666666,
+          "revisao_humana": 0.5
+        }
+      ],
+      "diferenca_pp": 66.66666666666667,
+      "so_amostras_grandes": false
+    }
+  }
+}

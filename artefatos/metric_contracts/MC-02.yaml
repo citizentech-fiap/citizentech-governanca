@@ -1,0 +1,67 @@
+id: MC-02
+nome: Decisão correta da pré-triagem de pedidos
+versao: 1.0.0
+modulo: rpa
+nome_projeto: CitizenTech
+responsavel_negocio: Jonas Alaf (Metric Owner)
+responsavel_tecnico: Luís Fernando de Oliveira Salgado
+data_criacao: 2026-11-13
+revisao: "-"
+
+caso: >
+  O robô lê o pedido do agricultor e os anexos, identifica o serviço, confere os documentos e decide
+  entre responder sozinho, mandar para revisão humana ou marcar o pedido como inválido. O erro que mais
+  prejudica é responder sozinho sobre o serviço errado. Este contrato fixa como medir a decisão e qual
+  erro não é tolerado.
+
+objetivo: >
+  Medir a pré-triagem com uma definição única de decisão correta e de erro grave, comparável entre
+  versões do classificador e dos limiares.
+
+indicador:
+  chave: decisao_correta
+  nome: Decisão final correta (resolvido, revisão humana ou inválido)
+  formula: pedidos com decisão igual à esperada / pedidos avaliados
+  elegibilidade: >
+    Todos os pedidos rotulados do conjunto de teste sintético (60). Pedidos ambíguos têm decisão
+    esperada "revisão humana". O limiar de ambiguidade é escolhido só no conjunto de validação.
+  baseline: 0.767
+  baseline_origem: antes da calibração de ambiguidade em validação separada (commit c8dbe72)
+  meta: 0.80
+  atualizacao: a cada mudança do classificador, dos limiares ou do catálogo de serviços
+  fonte: RPA/eval/resultados_robo.csv e RPA/data/synthetic/labels.csv
+
+qualidade:
+  - chave: erro_grave
+    nome: Respostas automáticas sobre o serviço errado ou fora de escopo
+    limite: "== 0"
+  - chave: acuracia_classificacao
+    nome: Classificação correta do serviço (exceto inválidos e fora de escopo)
+    limite: ">= 0.90"
+  - chave: taxa_revisao_humana
+    nome: Pedidos enviados para revisão humana
+    limite: "<= 0.50"
+  - chave: revisao_desnecessaria
+    nome: Pedidos resolvíveis que foram para revisão humana
+    limite: "informativo"
+
+alertas:
+  - metrica: erro_grave
+    operador: ">"
+    valor: 0
+    nivel: critico
+    acao: Não promover. Rever o limiar de confiança e os casos que passaram.
+  - metrica: decisao_correta
+    operador: "<"
+    valor: 0.80
+    nivel: alerta
+    acao: Rever classificador e limiares no conjunto de validação.
+  - metrica: taxa_revisao_humana
+    operador: ">"
+    valor: 0.50
+    nivel: alerta
+    acao: Fila acima da capacidade prevista. Rever limiares com o responsável de negócio.
+
+monitoramento: >
+  metricas.py recalcula o contrato a partir dos resultados versionados. Em operação, a mesma conta vale
+  para cada execução do robô, lida da aba solicitacoes da planilha de controle.

@@ -1,0 +1,125 @@
+{
+  "safras": [
+    {
+      "safra": 2012,
+      "psi": 2.2512367299133915,
+      "faixa": "mudança relevante",
+      "mediana_razao": 0.24815761768687025,
+      "acuracia_milho": 0.9565217391304348,
+      "pares": 23
+    },
+    {
+      "safra": 2013,
+      "psi": 0.3582889640526344,
+      "faixa": "mudança relevante",
+      "mediana_razao": 0.42881894311290786,
+      "acuracia_milho": 0.9130434782608695,
+      "pares": 23
+    },
+    {
+      "safra": 2014,
+      "psi": 0.1613281913259763,
+      "faixa": "investigar",
+      "mediana_razao": 0.6175614916688705,
+      "acuracia_milho": 0.6521739130434783,
+      "pares": 23
+    },
+    {
+      "safra": 2015,
+      "psi": 0.20477064045572396,
+      "faixa": "mudança relevante",
+      "mediana_razao": 0.5304283351394513,
+      "acuracia_milho": 0.8260869565217391,
+      "pares": 23
+    },
+    {
+      "safra": 2016,
+      "psi": 0.17828821784489501,
+      "faixa": "investigar",
+      "mediana_razao": 0.518857749835152,
+      "acuracia_milho": 0.13043478260869565,
+      "pares": 23
+    },
+    {
+      "safra": 2017,
+      "psi": 0.04780228029758873,
+      "faixa": "estável",
+      "mediana_razao": 0.5704121687929345,
+      "acuracia_milho": 0.4782608695652174,
+      "pares": 23
+    },
+    {
+      "safra": 2018,
+      "psi": 0.11905646085520144,
+      "faixa": "investigar",
+      "mediana_razao": 0.6853261211396943,
+      "acuracia_milho": 0.6521739130434783,
+      "pares": 23
+    },
+    {
+      "safra": 2019,
+      "psi": 0.23104472567826295,
+      "faixa": "mudança relevante",
+      "mediana_razao": 0.834965034965035,
+      "acuracia_milho": 0.5217391304347826,
+      "pares": 23
+    },
+    {
+      "safra": 2020,
+      "psi": 1.9348436107682705,
+      "faixa": "mudança relevante",
+      "mediana_razao": 1.350876376361753,
+      "acuracia_milho": 0.9130434782608695,
+      "pares": 23
+    },
+    {
+      "safra": 2021,
+      "psi": 0.2312995496112196,
+      "faixa": "mudança relevante",
+      "mediana_razao": 0.4327727743683748,
+      "acuracia_milho": 0.17391304347826086,
+      "pares": 23
+    },
+    {
+      "safra": 2022,
+      "psi": 0.6276610449247544,
+      "faixa": "mudança relevante",
+      "mediana_razao": 0.9293513210756685,
+      "acuracia_milho": 0.8260869565217391,
+      "pares": 23
+    },
+    {
+      "safra": 2023,
+      "psi": 0.19644188512056487,
+      "faixa": "investigar",
+      "mediana_razao": 0.7164424924512761,
+      "acuracia_milho": 0.4782608695652174,
+      "pares": 23
+    },
+    {
+      "safra": 2024,
+      "psi": 0.3604594009801599,
+      "faixa": "mudança relevante",
+      "mediana_razao": 1.044892413904444,
+      "acuracia_milho": 0.8260869565217391,
+      "pares": 23
+    },
+    {
+      "safra": 2025,
+      "psi": 0.1104043103923339,
+      "faixa": "investigar",
+      "mediana_razao": 0.6027312577273238,
+      "acuracia_milho": 0.4782608695652174,
+      "pares": 23
+    },
+    {
+      "safra": 2026,
+      "psi": 0.02610380504587352,
+      "faixa": "estável",
+      "mediana_razao": 0.6414066369489845,
+      "acuracia_milho": NaN,
+      "pares": 0
+    }
+  ],
+  "correlacao_psi_acerto": 0.6911537762413252
+}

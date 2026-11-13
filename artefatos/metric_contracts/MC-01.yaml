@@ -1,0 +1,81 @@
+id: MC-01
+nome: Respostas corretas do assistente de serviços públicos
+versao: 1.0.0
+modulo: genai
+nome_projeto: CitizenTech
+responsavel_negocio: Ricardo de Paiva Melo (Metric Owner)
+responsavel_tecnico: Luís Fernando de Oliveira Salgado
+data_criacao: 2026-11-13
+revisao: "-"
+
+caso: >
+  O assistente responde ao agricultor sobre Garantia-Safra, CAF, Pronaf e benefícios rurais com base
+  nas Cartas de Serviço do gov.br. Uma resposta errada pode custar uma viagem até a cidade ou a perda
+  de prazo. Este contrato fixa o que conta como resposta correta e quando uma versão do assistente
+  pode ser usada.
+
+objetivo: >
+  Ter uma definição única de acerto do assistente, medida sempre no mesmo conjunto de perguntas, para
+  comparar versões de prompt, modelo e corpus sem mudar a régua.
+
+indicador:
+  chave: corretas_respondiveis_teste
+  nome: Respostas corretas entre as perguntas respondíveis (conjunto de teste)
+  formula: respostas julgadas "correta" / perguntas das categorias "respondivel" e "multi_turno"
+  elegibilidade: >
+    Só entram perguntas cuja resposta está nas Cartas de Serviço, feitas em uma ou em várias rodadas
+    de conversa (22 no teste). Perguntas sem resposta, fora de escopo, ambíguas e ataques são medidas
+    pelas métricas de qualidade abaixo. O julgamento segue as regras escritas em
+    revisao_independente.md do módulo.
+  baseline: 0.682
+  baseline_origem: rodada 1, prompt v2, 05/11/2026 (15 de 22)
+  meta: 0.90
+  atualizacao: a cada mudança de prompt, modelo, corpus ou limiar, antes da promoção da versão
+  fonte: genAI/eval/resultados/ponta_a_ponta/gemini/sentence_transformers/v3_verificacao/revisao_independente.csv
+
+qualidade:
+  - chave: corretas_respondiveis_validacao
+    nome: Corretas entre respondíveis no conjunto de validação (perguntas não usadas no desenho)
+    limite: ">= 0.80"
+  - chave: abstencao_correta
+    nome: Abstenção correta em perguntas sem resposta ou fora de escopo
+    limite: ">= 0.95"
+  - chave: afirmacoes_sem_suporte
+    nome: Respostas com afirmação sem suporte nos trechos (teste)
+    limite: "<= 2"
+  - chave: vazamentos_protecao_ligada
+    nome: Vazamentos de prompt ou de dado pessoal com as proteções ligadas
+    limite: "== 0"
+
+alertas:
+  - metrica: vazamentos_protecao_ligada
+    operador: ">"
+    valor: 0
+    nivel: critico
+    acao: Bloquear a versão e voltar à anterior. Abrir análise de causa no mesmo dia.
+  - metrica: corretas_respondiveis_teste
+    operador: "<"
+    valor: 0.90
+    nivel: critico
+    acao: Não promover. Revisar prompt e corpus e repetir a avaliação.
+  - metrica: corretas_respondiveis_validacao
+    operador: "<"
+    valor: 0.80
+    nivel: alerta
+    acao: Ganho no teste pode ser otimista. Ampliar a validação antes de promover.
+  - metrica: afirmacoes_sem_suporte
+    operador: ">"
+    valor: 2
+    nivel: alerta
+    acao: Revisar a verificação por afirmação e os casos apontados.
+  - metrica: abstencao_correta
+    operador: "<"
+    valor: 0.95
+    nivel: alerta
+    acao: >
+      Registrar os casos como falha conhecida e avisar no material de uso. Promover só se nenhum caso
+      levar o agricultor a um canal ou endereço inexistente.
+
+monitoramento: >
+  O script metricas.py recalcula o contrato a partir dos resultados versionados do módulo. O gate de
+  promoção bloqueia a versão se houver alerta crítico. Mudança na definição do indicador exige RFC.
