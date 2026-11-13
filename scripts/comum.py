@@ -95,10 +95,10 @@ def num(valor, casas=2):
 
 def gravar(nome, texto, dados=None):
     EVIDENCIAS.mkdir(exist_ok=True)
-    (EVIDENCIAS / f"{nome}.md").write_text(texto, encoding="utf-8")
+    (EVIDENCIAS / f"{nome}.md").write_text(texto, encoding="utf-8", newline="\n")
     if dados is not None:
         (EVIDENCIAS / f"{nome}.json").write_text(json.dumps(dados, ensure_ascii=False, indent=2, default=str),
-                                                 encoding="utf-8")
+                                                 encoding="utf-8", newline="\n")
 
 
 def cabecalho(titulo, dados_versoes=None):

@@ -51,7 +51,8 @@ def main():
         ARQUIVO.parent.mkdir(exist_ok=True)
         dados_versoes = comum.versoes()
         conteudo = {"commits": {m: d["commit"] for m, d in dados_versoes.items()}, "hashes": calcular(dados_versoes)}
-        ARQUIVO.write_text(json.dumps(conteudo, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        ARQUIVO.write_text(json.dumps(conteudo, ensure_ascii=False, indent=2) + "\n", encoding="utf-8",
+                           newline="\n")
         print(f"Hashes registrados em {ARQUIVO.relative_to(comum.RAIZ)}")
         return 0
     resultado = conferir()
