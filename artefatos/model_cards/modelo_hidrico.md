@@ -5,7 +5,7 @@
 | Campo | Valor |
 |---|---|
 | Nome | modelo hídrico, `pipelines/risco.py` do painel |
-| Versão | commit `1514bb2` (09/11/2026); calibração pela normal 1991-2020 desde o commit `9371172` |
+| Versão | commit `cae045f` (13/11/2026); calibração pela normal 1991-2020 desde o commit `9371172` |
 | Tipo | regra física adaptada da resposta FAO-33, sem aprendizado de máquina |
 | Fórmula | perda (%) = 100 x Ky x (1 - ISNA_ano / ISNA_normal), limitada a 0 e 100 |
 | Entradas | chuva e ET0 diárias (Open-Meteo, reanálise ERA5), Kc e Ky por cultura, normal 1991-2020 do município |

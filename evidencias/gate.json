@@ -114,7 +114,7 @@
         "criterio": "Rastreabilidade: código no commit registrado, sem alteração local",
         "papel": "Engenharia",
         "estado": "ok",
-        "detalhe": "commit 1514bb2, árvore limpa"
+        "detalhe": "commit cae045f, árvore limpa"
       },
       {
         "criterio": "Reprodutibilidade: suíte de testes do módulo passa",
@@ -159,6 +159,6 @@
         "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"
       }
     ],
-    "commit": "1514bb2128284acbc06cda9ba6bb205d489a9845"
+    "commit": "cae045f809b9b8d4fe8de0ea3c22a70ad57cfb01"
   }
 }

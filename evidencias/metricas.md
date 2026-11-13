@@ -4,7 +4,7 @@ Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os 
 
 - genai: `e3f65dd`
 - rpa: `c8dbe72`
-- dashboard: `1514bb2`
+- dashboard: `cae045f`
 
 ## MC-01 Respostas corretas do assistente de serviços públicos (v1.0.0)
 

@@ -36,8 +36,8 @@ modulos:
     repositorio: citizentech-fiap/citizentech-dashboard
     pasta: ../dashboard
     disciplina: Front-end em Sistemas de IA
-    commit: 1514bb2128284acbc06cda9ba6bb205d489a9845
-    data_commit: 2026-11-09
+    commit: cae045f809b9b8d4fe8de0ea3c22a70ad57cfb01
+    data_commit: 2026-11-13
     testes:
       comando: [python, -m, unittest, discover, -s, tests, -q]
       ambiente: {}

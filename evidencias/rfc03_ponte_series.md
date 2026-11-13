@@ -4,7 +4,7 @@ Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os 
 
 - genai: `e3f65dd`
 - rpa: `c8dbe72`
-- dashboard: `1514bb2`
+- dashboard: `cae045f`
 
 v1: perda = 100 x Ky x (1 - ISNA_ano). v2: perda = 100 x Ky x (1 - ISNA_ano / ISNA_normal).
 Mesmos dados de chuva e ET0; referência: perda real do IBGE no critério de 40%.

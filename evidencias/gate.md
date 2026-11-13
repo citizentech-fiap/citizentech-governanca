@@ -4,13 +4,13 @@ Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os 
 
 - genai: `e3f65dd`
 - rpa: `c8dbe72`
-- dashboard: `1514bb2`
+- dashboard: `cae045f`
 
 | Módulo | Commit | Resultado |
 |---|---|---|
 | genai | `e3f65dd` | **aprovado** |
 | rpa | `c8dbe72` | **aprovado com exceção** |
-| dashboard | `1514bb2` | **aprovado com exceção** |
+| dashboard | `cae045f` | **aprovado com exceção** |
 
 ## genai (Generative AI & Advanced Nets)
 
@@ -42,7 +42,7 @@ Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os 
 
 | # | Critério | Papel | Situação | Detalhe |
 |---|---|---|---|---|
-| 1 | Rastreabilidade: código no commit registrado, sem alteração local | Engenharia | ok | commit 1514bb2, árvore limpa |
+| 1 | Rastreabilidade: código no commit registrado, sem alteração local | Engenharia | ok | commit cae045f, árvore limpa |
 | 2 | Reprodutibilidade: suíte de testes do módulo passa | Engenharia | ok | 74 testes OK |
 | 3 | Conjuntos de referência sem alteração (hash SHA-256) | Data Steward | ok | 6 arquivos iguais |
 | 4 | Desempenho: Metric Contract sem alerta crítico | Metric Owner | ok | MC-03: 63,0%; 2 alerta(s) não crítico(s): sensibilidade_milho, sensibilidade_feijao |

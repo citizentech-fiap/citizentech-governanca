@@ -4,7 +4,7 @@ Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os 
 
 - genai: `e3f65dd`
 - rpa: `c8dbe72`
-- dashboard: `1514bb2`
+- dashboard: `cae045f`
 
 Limite de diferença entre subgrupos: 5 pontos percentuais, calculado só entre grupos com 20 casos ou mais.
 

@@ -4,7 +4,7 @@ Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os 
 
 - genai: `e3f65dd`
 - rpa: `c8dbe72`
-- dashboard: `1514bb2`
+- dashboard: `cae045f`
 
 Variável: chuva de 30 dias dividida pela normal 1991-2020, por município e dia, de janeiro a junho. Referência de cada safra: as demais safras do histórico.
 
