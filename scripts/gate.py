@@ -5,7 +5,7 @@ evidencias/gate.md. Um critério bloqueante que falha reprova o módulo, a menos
 válida em artefatos/excecoes.yaml (com motivo, mitigação, responsável e prazo).
 
     python scripts/gate.py               # completo, roda as suítes de teste dos três módulos
-    python scripts/gate.py --sem-testes  # pula as suítes (resultado fica incompleto)
+    python scripts/gate.py --sem-testes  # pula as suítes e só mostra no terminal (não grava evidência)
 """
 import argparse
 import os
@@ -201,10 +201,16 @@ def main():
     except (FileNotFoundError, RuntimeError, KeyError, subprocess.TimeoutExpired) as erro:
         print(f"Gate não concluído: {erro}")
         return 2
-    comum.gravar("gate", relatorio(resultado, dados), resultado)
     for modulo, r in resultado.items():
         print(f"{modulo}: {r['situacao']}")
-    print("Relatório: evidencias/gate.md")
+        if args.sem_testes:
+            for i, c in enumerate(r["criterios"], 1):
+                print(f"  {i}. {c['criterio']}: {c['estado']}")
+    if args.sem_testes:
+        print("Suítes de teste não executadas; evidencias/gate.md não foi alterado.")
+    else:
+        comum.gravar("gate", relatorio(resultado, dados), resultado)
+        print("Relatório: evidencias/gate.md")
     return 1 if any(r["situacao"] == "reprovado" for r in resultado.values()) else 0
 
 
