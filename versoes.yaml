@@ -1,0 +1,50 @@
+# Versão entregue de cada módulo do CitizenTech.
+# O gate (scripts/gate.py) só gera evidência se cada pasta irmã estiver exatamente
+# no commit abaixo. Mudou algum módulo? Atualize o commit aqui, rode o gate de novo
+# e registre o motivo no histórico deste repositório.
+
+modulos:
+  genai:
+    repositorio: citizentech-fiap/citizentech-genai
+    pasta: ../genAI
+    disciplina: Generative AI & Advanced Nets
+    commit: e3f65ddf761b53605e0e354a85a53e5c8cad29e7
+    data_commit: 2026-11-09
+    testes:
+      comando: [python, -m, unittest, discover, -s, tests, -q]
+      ambiente: {CITIZEN_RAG_TEST_BACKEND: hashing}
+    conjuntos_referencia:
+      - eval/perguntas.jsonl
+      - eval/perguntas_validacao.jsonl
+      - data/corpus/servicos.jsonl
+
+  rpa:
+    repositorio: citizentech-fiap/citizentech-rpa
+    pasta: ../RPA
+    disciplina: AI for Robotic Process Automation
+    commit: c8dbe72604dfcefcfea50cd9ea9c599f2d3b8a40
+    data_commit: 2026-11-09
+    testes:
+      comando: [python, -m, unittest, discover, -s, tests, -q]
+      ambiente: {}
+    conjuntos_referencia:
+      - data/synthetic/labels.csv
+      - data/synthetic/labels_validacao.csv
+      - data/synthetic/treino_classificador.csv
+
+  dashboard:
+    repositorio: citizentech-fiap/citizentech-dashboard
+    pasta: ../dashboard
+    disciplina: Front-end em Sistemas de IA
+    commit: 1514bb2128284acbc06cda9ba6bb205d489a9845
+    data_commit: 2026-11-09
+    testes:
+      comando: [python, -m, unittest, discover, -s, tests, -q]
+      ambiente: {}
+    conjuntos_referencia:
+      - data/clima_diario.csv
+      - data/climatologia.csv
+      - data/pam_municipios.csv
+      - data/garantia_safra_pagamentos.csv
+      - data/municipios_semiarido.csv
+      - data/pedidos_safra.csv
