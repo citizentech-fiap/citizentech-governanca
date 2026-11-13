@@ -84,6 +84,7 @@ O gate só gera evidência se cada módulo estiver no commit de `versoes.yaml` e
 | LGPD: inventário, RIPD e termo de consentimento | [`artefatos/lgpd/`](artefatos/lgpd/) |
 | Maturidade (DAMA-DMBOK2, MLOps) e roadmap | [`artefatos/maturidade_roadmap.md`](artefatos/maturidade_roadmap.md) |
 | Antipadrões evitados e presentes | [`artefatos/antipadroes.md`](artefatos/antipadroes.md) |
+| Disciplinas da GS não integradas e motivo | [`artefatos/disciplinas_nao_integradas.md`](artefatos/disciplinas_nao_integradas.md) |
 
 ## Relatório
 
