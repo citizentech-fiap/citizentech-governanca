@@ -13,9 +13,11 @@ ficaram na busca com citação.
 
 ## Visão Computacional
 
-O robô usa OCR pronto para ler os anexos e reconhecer o tipo de documento. Nos anexos sintéticos do teste,
-identificou 123 de 123 legíveis e recusou 5 de 5 degradados. Não há modelo de visão treinado pelo grupo nem a
-entrega desta GS.
+A GS desta disciplina pede um módulo que identifique fissuras em concreto ou danos na pavimentação, com
+modelo pré-treinado, métricas de classificação ou detecção e medida de latência. O tema é manutenção urbana,
+fora do público do CitizenTech, e a entrega não foi integrada. A visão computacional do projeto se limita ao
+OCR pronto do robô, que reconheceu 123 de 123 anexos sintéticos legíveis e recusou 5 de 5 degradados. No tema
+da seca, o uso natural seria classificar fotos da lavoura enviadas pelo agricultor para apoiar a vistoria.
 
 ## Physical Computing, Embedded AI, Robotics & Cognitive IoT
 
