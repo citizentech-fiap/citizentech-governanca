@@ -15,15 +15,36 @@ entregue, se cada módulo cumpre o que esses documentos prometem.
 | Ricardo de Paiva Melo | RM565522 |
 | Jonas Alaf | RM566479 |
 
-## Módulos governados
+## Como os quatro repositórios se conectam
 
-| Repositório | Disciplina | Papel na solução |
-|---|---|---|
-| [`citizentech-rpa`](https://github.com/citizentech-fiap/citizentech-rpa) | AI for RPA | coleta as Cartas de Serviço do gov.br e faz a pré-triagem dos pedidos |
-| [`citizentech-genai`](https://github.com/citizentech-fiap/citizentech-genai) | Generative AI | assistente que responde com citação das fontes oficiais |
-| [`citizentech-dashboard`](https://github.com/citizentech-fiap/citizentech-dashboard) | Front-end | painel de decisão do gestor público |
+O CitizenTech é uma solução só, dividida em quatro repositórios da organização
+[citizentech-fiap](https://github.com/citizentech-fiap), um por disciplina. **Cada módulo roda sozinho**, com dados
+de exemplo já versionados. Juntos, eles trocam dados assim:
 
-A versão de cada módulo coberta por esta governança está em [`versoes.yaml`](versoes.yaml).
+```mermaid
+flowchart LR
+    GOVBR[gov.br<br/>Cartas de Serviço] --> RPA[citizentech-rpa<br/>robô de pré-triagem]
+    RPA -- "Cartas coletadas<br/>(servicos.jsonl)" --> GEN[citizentech-genai<br/>assistente RAG]
+    GEN -- "resposta ao agricultor<br/>(rag.answer)" --> RPA
+    RPA -- "pedidos triados<br/>(controle.xlsx)" --> DASH[citizentech-dashboard<br/>painel do gestor]
+    GEN -- "rascunho da convocação<br/>(rag.answer)" --> DASH
+    GOVERN[citizentech-governanca] -. confere .-> RPA
+    GOVERN -. confere .-> GEN
+    GOVERN -. confere .-> DASH
+```
+
+| Repositório | Disciplina | O que faz | Precisa dos outros? |
+|---|---|---|---|
+| [`citizentech-rpa`](https://github.com/citizentech-fiap/citizentech-rpa) | AI for RPA | coleta as Cartas de Serviço do gov.br e faz a pré-triagem dos pedidos | não; com o genAI ao lado, redige as respostas com o assistente (sem ele, usa template) |
+| [`citizentech-genai`](https://github.com/citizentech-fiap/citizentech-genai) | Generative AI | assistente que responde citando as Cartas de Serviço | não; traz uma cópia do corpus coletado pelo robô |
+| [`citizentech-dashboard`](https://github.com/citizentech-fiap/citizentech-dashboard) | Front-end | painel de decisão do gestor (Mandacaru) | não; com genAI e RPA ao lado, usa o assistente e os pedidos do robô (sem eles, snapshots e templates) |
+| [`citizentech-governanca`](https://github.com/citizentech-fiap/citizentech-governanca) **(este)** | Governança em IA | documentos e scripts que verificam os três módulos | **sim**: os três clonados ao lado |
+
+**Para integrar, o nome das pastas importa.** Os módulos se encontram por caminhos relativos (`../genAI`, `../RPA`,
+`../dashboard`). Um `git clone` sem nome de pasta cria `citizentech-genai`, e a integração não encontra o módulo.
+Os comandos da seção [Rodar os quatro juntos](#rodar-os-quatro-juntos) já usam os nomes certos.
+
+A versão de cada módulo coberta por esta governança (o commit exato) está em [`versoes.yaml`](versoes.yaml).
 
 ## Resultado atual
 
@@ -35,23 +56,64 @@ A versão de cada módulo coberta por esta governança está em [`versoes.yaml`]
 
 Detalhe em [`evidencias/gate.md`](evidencias/gate.md) e [`evidencias/metricas.md`](evidencias/metricas.md).
 
-## Como reproduzir
+## Rodar os quatro juntos
 
-Os quatro repositórios ficam lado a lado na mesma pasta:
+Este repositório **não roda sozinho**: os scripts conferem o código dos três módulos, então os quatro precisam
+estar clonados lado a lado, com os nomes de pasta abaixo.
 
-```bash
+Para a integração completa, os quatro repositórios ficam lado a lado numa mesma pasta e usam **um único ambiente
+Python, na pasta de cima**. Assim, o robô e o painel enxergam o pacote do assistente, e a governança roda os testes
+dos três com o mesmo Python.
+
+```
+CitizenTech/
+├── .venv/        ambiente compartilhado pelos quatro
+├── RPA/
+├── genAI/
+├── dashboard/
+└── governanca/
+```
+
+**Windows (PowerShell)**
+```powershell
+mkdir CitizenTech; cd CitizenTech
 git clone https://github.com/citizentech-fiap/citizentech-rpa.git RPA
 git clone https://github.com/citizentech-fiap/citizentech-genai.git genAI
 git clone https://github.com/citizentech-fiap/citizentech-dashboard.git dashboard
 git clone https://github.com/citizentech-fiap/citizentech-governanca.git governanca
-```
-
-Ambiente único para os quatro (Python 3.11 ou mais novo):
-
-```bash
 python -m venv .venv
-.venv/Scripts/python -m pip install -e genAI -r RPA/requirements.txt -r dashboard/requirements.txt -r governanca/requirements.txt
+.venv\Scripts\Activate.ps1
+pip install -e genAI -r RPA/requirements.txt -r dashboard/requirements.txt -r governanca/requirements.txt
+copy genAI\.env.example genAI\.env      # opcional: preencha GEMINI_API_KEY
 ```
+
+**macOS / Linux**
+```bash
+mkdir CitizenTech && cd CitizenTech
+git clone https://github.com/citizentech-fiap/citizentech-rpa.git RPA
+git clone https://github.com/citizentech-fiap/citizentech-genai.git genAI
+git clone https://github.com/citizentech-fiap/citizentech-dashboard.git dashboard
+git clone https://github.com/citizentech-fiap/citizentech-governanca.git governanca
+python3 -m venv .venv
+source .venv/bin/activate
+pip install torch --index-url https://download.pytorch.org/whl/cpu   # só no Linux: evita baixar vários GB de CUDA
+pip install -e genAI -r RPA/requirements.txt -r dashboard/requirements.txt -r governanca/requirements.txt
+cp genAI/.env.example genAI/.env        # opcional: preencha GEMINI_API_KEY
+```
+
+Com o ambiente ativado, cada módulo roda de dentro da própria pasta:
+
+| Para | Comando |
+|---|---|
+| Portal do robô (enviar pedido, painel do robô, chat do assistente) | `cd RPA` → `streamlit run app/streamlit_app.py` |
+| Painel do gestor | `cd dashboard` → `streamlit run app.py` |
+| Gate de governança (roda as três suítes de teste) | `cd governanca` → `python scripts/gate.py` |
+
+A chave do Gemini é gratuita em https://aistudio.google.com/apikey. Ela fica no `.env` do genAI (o assistente também
+lê o `.env` do RPA). O `.env` está no `.gitignore` e não vai para o repositório. Sem chave, tudo funciona: o
+assistente se abstém, e o robô e o painel usam textos prontos.
+
+### Scripts da governança
 
 Dentro de `governanca/`, nenhum script usa rede ou chave de API:
 
@@ -65,7 +127,22 @@ Dentro de `governanca/`, nenhum script usa rede ou chave de API:
 | `python scripts/gate.py` | oito critérios por módulo, incluindo as suítes de teste dos três | `evidencias/gate.md` |
 | `python -m unittest discover -s tests -q` | testes dos próprios scripts | terminal |
 
-O gate só gera evidência se cada módulo estiver no commit de `versoes.yaml` e sem alteração local.
+Com o ambiente ativado, rode de dentro de `governanca/`.
+
+### O que você deve ver
+
+- `python scripts/golden.py`: uma linha `igual` para cada arquivo de referência dos três módulos (o hash confere).
+- `python scripts/gate.py`: leva alguns minutos, porque roda as suítes de teste dos três módulos (184 testes). No
+  fim, o terminal mostra os 8 critérios de cada módulo, e o resultado é gravado em `evidencias/gate.md`: **genai
+  aprovado**, **rpa e dashboard aprovados com exceção** (equidade, com responsável e prazo em
+  [`artefatos/excecoes.yaml`](artefatos/excecoes.yaml)).
+- `python scripts/gate.py --sem-testes`: a versão rápida. Pula as suítes, mostra os critérios só no terminal e não
+  altera o `gate.md`.
+
+**Se o gate recusar:** ele só gera evidência se cada módulo estiver **exatamente** no commit registrado em
+[`versoes.yaml`](versoes.yaml) e sem alteração local. Isso é proposital: a evidência precisa se referir ao código
+entregue. Se você clonou uma versão mais nova de algum módulo, faça `git checkout <commit>` com o commit do
+`versoes.yaml` dentro da pasta dele.
 
 ## Mapa dos artefatos
 
@@ -93,7 +170,6 @@ Word, aceite a atualização dos campos para montar o sumário e as listas de fi
 
 ## Links
 
-- Vídeo:
 - RPA: https://github.com/citizentech-fiap/citizentech-rpa
 - GenAI: https://github.com/citizentech-fiap/citizentech-genai
 - Dashboard: https://github.com/citizentech-fiap/citizentech-dashboard

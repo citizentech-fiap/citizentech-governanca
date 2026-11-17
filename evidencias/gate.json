@@ -6,7 +6,7 @@
         "criterio": "Rastreabilidade: código no commit registrado, sem alteração local",
         "papel": "Engenharia",
         "estado": "ok",
-        "detalhe": "commit e3f65dd, árvore limpa"
+        "detalhe": "commit 108dbfa, árvore limpa"
       },
       {
         "criterio": "Reprodutibilidade: suíte de testes do módulo passa",
@@ -51,7 +51,7 @@
         "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"
       }
     ],
-    "commit": "e3f65ddf761b53605e0e354a85a53e5c8cad29e7"
+    "commit": "108dbfa7d17c3d86fc6eea1aa48360d970163845"
   },
   "rpa": {
     "situacao": "aprovado com exceção",
@@ -60,7 +60,7 @@
         "criterio": "Rastreabilidade: código no commit registrado, sem alteração local",
         "papel": "Engenharia",
         "estado": "ok",
-        "detalhe": "commit c8dbe72, árvore limpa"
+        "detalhe": "commit bad8682, árvore limpa"
       },
       {
         "criterio": "Reprodutibilidade: suíte de testes do módulo passa",
@@ -105,7 +105,7 @@
         "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"
       }
     ],
-    "commit": "c8dbe72604dfcefcfea50cd9ea9c599f2d3b8a40"
+    "commit": "bad8682280ad13ece31bf458fa9e090db42e4e55"
   },
   "dashboard": {
     "situacao": "aprovado com exceção",
@@ -114,7 +114,7 @@
         "criterio": "Rastreabilidade: código no commit registrado, sem alteração local",
         "papel": "Engenharia",
         "estado": "ok",
-        "detalhe": "commit cae045f, árvore limpa"
+        "detalhe": "commit 2b7340a, árvore limpa"
       },
       {
         "criterio": "Reprodutibilidade: suíte de testes do módulo passa",
@@ -159,6 +159,6 @@
         "detalhe": "artefatos/lgpd/inventario_dados.md; artefatos/lgpd/ripd_simplificado.md"
       }
     ],
-    "commit": "cae045f809b9b8d4fe8de0ea3c22a70ad57cfb01"
+    "commit": "2b7340a3b0f51a5b0aa8fe0e17c4cd9cd401c7ba"
   }
 }

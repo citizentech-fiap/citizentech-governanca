@@ -8,8 +8,8 @@ modulos:
     repositorio: citizentech-fiap/citizentech-genai
     pasta: ../genAI
     disciplina: Generative AI & Advanced Nets
-    commit: e3f65ddf761b53605e0e354a85a53e5c8cad29e7
-    data_commit: 2026-11-09
+    commit: 108dbfa7d17c3d86fc6eea1aa48360d970163845
+    data_commit: 2026-11-17
     testes:
       comando: [python, -m, unittest, discover, -s, tests, -q]
       ambiente: {CITIZEN_RAG_TEST_BACKEND: hashing}
@@ -22,8 +22,8 @@ modulos:
     repositorio: citizentech-fiap/citizentech-rpa
     pasta: ../RPA
     disciplina: AI for Robotic Process Automation
-    commit: c8dbe72604dfcefcfea50cd9ea9c599f2d3b8a40
-    data_commit: 2026-11-09
+    commit: bad8682280ad13ece31bf458fa9e090db42e4e55
+    data_commit: 2026-11-17
     testes:
       comando: [python, -m, unittest, discover, -s, tests, -q]
       ambiente: {}
@@ -36,8 +36,8 @@ modulos:
     repositorio: citizentech-fiap/citizentech-dashboard
     pasta: ../dashboard
     disciplina: Front-end em Sistemas de IA
-    commit: cae045f809b9b8d4fe8de0ea3c22a70ad57cfb01
-    data_commit: 2026-11-13
+    commit: 2b7340a3b0f51a5b0aa8fe0e17c4cd9cd401c7ba
+    data_commit: 2026-11-16
     testes:
       comando: [python, -m, unittest, discover, -s, tests, -q]
       ambiente: {}

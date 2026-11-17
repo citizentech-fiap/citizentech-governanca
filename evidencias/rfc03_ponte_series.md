@@ -1,10 +1,10 @@
 # RFC-03: ponte entre séries da perda estimada
 
-Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os commits e o hash dos conjuntos de referência:
+Gerado em 17/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os commits e o hash dos conjuntos de referência:
 
-- genai: `e3f65dd`
-- rpa: `c8dbe72`
-- dashboard: `cae045f`
+- genai: `108dbfa`
+- rpa: `bad8682`
+- dashboard: `2b7340a`
 
 v1: perda = 100 x Ky x (1 - ISNA_ano). v2: perda = 100 x Ky x (1 - ISNA_ano / ISNA_normal).
 Mesmos dados de chuva e ET0; referência: perda real do IBGE no critério de 40%.

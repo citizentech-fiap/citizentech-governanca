@@ -28,11 +28,14 @@ def pasta(modulo, dados=None):
 
 
 def sha256(caminho):
-    h = hashlib.sha256()
+    """Hash do conteúdo com quebras de linha normalizadas (CRLF -> LF).
+
+    Os repositórios guardam texto em LF (.gitattributes), mas uma cópia de trabalho no Windows pode estar em CRLF.
+    Sem normalizar, o mesmo conteúdo teria hashes diferentes na máquina de quem registrou e num clone novo.
+    """
     with open(caminho, "rb") as entrada:
-        for bloco in iter(lambda: entrada.read(1 << 20), b""):
-            h.update(bloco)
-    return h.hexdigest()
+        conteudo = entrada.read()
+    return hashlib.sha256(conteudo.replace(b"\r\n", b"\n")).hexdigest()
 
 
 def git(pasta_repo, *args):

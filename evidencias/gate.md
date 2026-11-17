@@ -1,22 +1,22 @@
 # Gate de promoção
 
-Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os commits e o hash dos conjuntos de referência:
+Gerado em 17/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os commits e o hash dos conjuntos de referência:
 
-- genai: `e3f65dd`
-- rpa: `c8dbe72`
-- dashboard: `cae045f`
+- genai: `108dbfa`
+- rpa: `bad8682`
+- dashboard: `2b7340a`
 
 | Módulo | Commit | Resultado |
 |---|---|---|
-| genai | `e3f65dd` | **aprovado** |
-| rpa | `c8dbe72` | **aprovado com exceção** |
-| dashboard | `cae045f` | **aprovado com exceção** |
+| genai | `108dbfa` | **aprovado** |
+| rpa | `bad8682` | **aprovado com exceção** |
+| dashboard | `2b7340a` | **aprovado com exceção** |
 
 ## genai (Generative AI & Advanced Nets)
 
 | # | Critério | Papel | Situação | Detalhe |
 |---|---|---|---|---|
-| 1 | Rastreabilidade: código no commit registrado, sem alteração local | Engenharia | ok | commit e3f65dd, árvore limpa |
+| 1 | Rastreabilidade: código no commit registrado, sem alteração local | Engenharia | ok | commit 108dbfa, árvore limpa |
 | 2 | Reprodutibilidade: suíte de testes do módulo passa | Engenharia | ok | 63 testes OK |
 | 3 | Conjuntos de referência sem alteração (hash SHA-256) | Data Steward | ok | 3 arquivos iguais |
 | 4 | Desempenho: Metric Contract sem alerta crítico | Metric Owner | ok | MC-01: 100,0%; 1 alerta(s) não crítico(s): abstencao_correta |
@@ -29,7 +29,7 @@ Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os 
 
 | # | Critério | Papel | Situação | Detalhe |
 |---|---|---|---|---|
-| 1 | Rastreabilidade: código no commit registrado, sem alteração local | Engenharia | ok | commit c8dbe72, árvore limpa |
+| 1 | Rastreabilidade: código no commit registrado, sem alteração local | Engenharia | ok | commit bad8682, árvore limpa |
 | 2 | Reprodutibilidade: suíte de testes do módulo passa | Engenharia | ok | 47 testes OK |
 | 3 | Conjuntos de referência sem alteração (hash SHA-256) | Data Steward | ok | 3 arquivos iguais |
 | 4 | Desempenho: Metric Contract sem alerta crítico | Metric Owner | ok | MC-02: 83,3% |
@@ -42,7 +42,7 @@ Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os 
 
 | # | Critério | Papel | Situação | Detalhe |
 |---|---|---|---|---|
-| 1 | Rastreabilidade: código no commit registrado, sem alteração local | Engenharia | ok | commit cae045f, árvore limpa |
+| 1 | Rastreabilidade: código no commit registrado, sem alteração local | Engenharia | ok | commit 2b7340a, árvore limpa |
 | 2 | Reprodutibilidade: suíte de testes do módulo passa | Engenharia | ok | 74 testes OK |
 | 3 | Conjuntos de referência sem alteração (hash SHA-256) | Data Steward | ok | 6 arquivos iguais |
 | 4 | Desempenho: Metric Contract sem alerta crítico | Metric Owner | ok | MC-03: 63,0%; 2 alerta(s) não crítico(s): sensibilidade_milho, sensibilidade_feijao |

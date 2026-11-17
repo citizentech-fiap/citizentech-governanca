@@ -1,10 +1,10 @@
 # Desempenho por subgrupo
 
-Gerado em 13/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os commits e o hash dos conjuntos de referência:
+Gerado em 17/11/2026 sobre as versões de `versoes.yaml`, depois de conferir os commits e o hash dos conjuntos de referência:
 
-- genai: `e3f65dd`
-- rpa: `c8dbe72`
-- dashboard: `cae045f`
+- genai: `108dbfa`
+- rpa: `bad8682`
+- dashboard: `2b7340a`
 
 Limite de diferença entre subgrupos: 5 pontos percentuais, calculado só entre grupos com 20 casos ou mais.
 
