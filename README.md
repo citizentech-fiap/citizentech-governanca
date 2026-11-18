@@ -15,6 +15,8 @@ entregue, se cada módulo cumpre o que esses documentos prometem.
 | Ricardo de Paiva Melo | RM565522 |
 | Jonas Alaf | RM566479 |
 
+**Vídeo de apresentação:** https://youtu.be/yeI1F26_IVE
+
 ## Como os quatro repositórios se conectam
 
 O CitizenTech é uma solução só, dividida em quatro repositórios da organização
